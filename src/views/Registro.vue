@@ -1,131 +1,121 @@
 <template>
-     
      <div class="my-5">
-          <b-container class="bv-example-row">
-               <b-row>
-                    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-                         <b-col>
-                              <b-form-group
-                                   id="input-group-1"
-                                   label="Primer Nombre"
-                                   label-for="input-1"
-                              >
-                                   <b-form-input
-                                        id="input-1"
-                                        v-model="form.primerNombre"
-                                        placeholder="Ingrese su Primer Nombre"
-                                        required
-                                   ></b-form-input>
-                              </b-form-group>
-
-                              <b-form-group
-                              id="input-group-2"
-                              label="Apellido Paterno"
-                              label-for="input-2"
-                         >
+          <b-container fluid class="px-5">
+               <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+                    <b-row class="my-1">
+                         <b-col sm="2">
+                              <label for="input-default">Primer Nombre:</label>
+                         </b-col>
+                         <b-col sm="4">
                               <b-form-input
-                                   id="input-2"
-                                   v-model="form.apellidoPaterno"
-                                   placeholder="Ingrese su Apellido Paterno"
+                                   id="input-default"
+                                   placeholder="Ingresa Primer Nombre"
+                                   v-model="form.primerNombre"
                                    required
+                                   type="text"
                               ></b-form-input>
-                         </b-form-group>
+                         </b-col>
 
-                         <b-form-group
-                              id="input-group-3"
-                              label="Sexo:"
-                              label-for="input-3"
-                         >
+                         <b-col sm="2">
+                              <label for="input-default">Segundo Nombre:</label>
+                         </b-col>
+                         <b-col sm="4">
+                              <b-form-input
+                                   id="input-default"
+                                   placeholder="Ingresa Segundo Nombre"
+                                   v-model="form.segundoNombre"
+                                   required
+                                   type="text"
+                              ></b-form-input>
+                         </b-col>
+                    </b-row>
+
+                    <b-row class="my-1">
+                         <b-col sm="2">
+                              <label for="input-default"
+                                   >Apellido Paterno:</label
+                              >
+                         </b-col>
+                         <b-col sm="4">
+                              <b-form-input
+                                   id="input-default"
+                                   placeholder="Ingresa Apellido Paterno"
+                                   v-model="form.apellidoPaterno"
+                                   required
+                                   type="text"
+                              ></b-form-input>
+                         </b-col>
+
+                         <b-col sm="2">
+                              <label for="input-default"
+                                   >Apellido Materno:</label
+                              >
+                         </b-col>
+                         <b-col sm="4">
+                              <b-form-input
+                                   id="input-default"
+                                   placeholder="Ingresa Apellido Materno"
+                                   v-model="form.apellidoMaterno"
+                                   required
+                                   type="text"
+                              ></b-form-input>
+                         </b-col>
+                    </b-row>
+
+                    <b-row class="my-1">
+                         <b-col sm="2">
+                              <label for="input-default">Sexo:</label>
+                         </b-col>
+                         <b-col sm="4">
                               <b-form-select
                                    id="input-3"
                                    v-model="form.sexo"
                                    :options="opcion"
                                    required
                               ></b-form-select>
-                         </b-form-group>
                          </b-col>
-                         <b-col>
-                              <b-form-group
-                                   id="input-group-1"
-                                   label="Segundo Nombre"
-                                   label-for="input-1"
-                              >
-                                   <b-form-input
-                                        id="input-1"
-                                        v-model="form.segundoNombre"
-                                        placeholder="Ingrese su Segundo Nombre"
-                                        required
-                                   ></b-form-input>
-                              </b-form-group>
-                              
-                              <b-form-group
-                              id="input-group-2"
-                              label="Apellido Materno"
-                              label-for="input-2"
-                         >
-                              <b-form-input
-                                   id="input-2"
-                                   v-model="form.apellidoMaterno"
-                                   placeholder="Ingrese su Apellido Materno"
-                                   required
-                              ></b-form-input>
-                              </b-form-group>
+                    </b-row>
 
-                              <b-form-group
-                              id="input-group-1"
-                              label="Email"
-                              label-for="input-1"
-                         >
+                    <b-row class="my-1">
+                         <b-col sm="2">
+                              <label for="input-default">Email:</label>
+                         </b-col>
+                         <b-col sm="4">
                               <b-form-input
-                                   id="input-1"
+                                   id="input-default"
+                                   placeholder="Ingresa Email"
                                    v-model="form.email"
+                                   required
                                    type="email"
-                                   placeholder="Ingrese su Email"
-                                   required
                               ></b-form-input>
-                         </b-form-group>
-
-                         <b-form-group
-                              id="input-group-1"
-                              label="Contraseña"
-                              label-for="input-1"
-                         >
-                              <b-form-input
-                                   id="input-1"
-                                   v-model="form.password"
-                                   type="password"
-                                   placeholder="Ingrese su Contraseña"
-                                   required
-                              ></b-form-input>
-                         </b-form-group>
-
-
                          </b-col>
+
+                         <b-col sm="2">
+                              <label for="input-default">Contraseña:</label>
+                         </b-col>
+                         <b-col sm="4">
+                              <b-form-input
+                                   id="input-default"
+                                   placeholder="Ingresa Contraseña"
+                                   v-model="form.password"
+                                   required
+                                   type="password"
+                              ></b-form-input>
+                         </b-col>
+                    </b-row>
+                    <div class="text-center mt-4">
                          <b-button type="submit" variant="primary"
-                              >Submit</b-button
+                              >Registrarse</b-button
                          >
                          <b-button
-                              class="btn-outline-dark"
+                              variant="info"
+                              class="mx-5"
                               :to="{ name: 'Home' }"
-                              >Submit</b-button
+                              >Volver Inicio</b-button
                          >
-                    </b-form>
-               </b-row>
+                    </div>
+               </b-form>
           </b-container>
-          
-                              
-                              
-
-                         
-
-                         
-
-                         
-
-                         
-
-                         
-                    
      </div>
 </template>
 

@@ -1,14 +1,14 @@
 <template>
-     <div class="my-5">
-          <b-container fluid class="px-5">
-               <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+     <div class="mt-5">
+          <b-container class="px-5">
+               <b-form @submit.prevent="onSubmit">
                     <b-row class="my-1">
                          <b-col sm="2">
                               <label for="input-default">Primer Nombre:</label>
                          </b-col>
                          <b-col sm="4">
                               <b-form-input
-                                   id="input-default"
+                                   id="primerNombre"
                                    placeholder="Ingresa Primer Nombre"
                                    v-model="form.primerNombre"
                                    required
@@ -21,7 +21,7 @@
                          </b-col>
                          <b-col sm="4">
                               <b-form-input
-                                   id="input-default"
+                                   id="segundoNombre"
                                    placeholder="Ingresa Segundo Nombre"
                                    v-model="form.segundoNombre"
                                    required
@@ -38,7 +38,7 @@
                          </b-col>
                          <b-col sm="4">
                               <b-form-input
-                                   id="input-default"
+                                   id="apellidoPaterno"
                                    placeholder="Ingresa Apellido Paterno"
                                    v-model="form.apellidoPaterno"
                                    required
@@ -53,7 +53,7 @@
                          </b-col>
                          <b-col sm="4">
                               <b-form-input
-                                   id="input-default"
+                                   id="apellidoMaterno"
                                    placeholder="Ingresa Apellido Materno"
                                    v-model="form.apellidoMaterno"
                                    required
@@ -68,7 +68,7 @@
                          </b-col>
                          <b-col sm="4">
                               <b-form-select
-                                   id="input-3"
+                                   id="sexo"
                                    v-model="form.sexo"
                                    :options="opcion"
                                    required
@@ -82,7 +82,7 @@
                          </b-col>
                          <b-col sm="4">
                               <b-form-input
-                                   id="input-default"
+                                   id="email"
                                    placeholder="Ingresa Email"
                                    v-model="form.email"
                                    required
@@ -95,7 +95,7 @@
                          </b-col>
                          <b-col sm="4">
                               <b-form-input
-                                   id="input-default"
+                                   id="password"
                                    placeholder="Ingresa Contraseña"
                                    v-model="form.password"
                                    required
@@ -141,8 +141,8 @@ export default {
           };
      },
      methods: {
-          onSubmit(event) {
-               event.preventDefault();
+          onSubmit() {
+               
                alert(JSON.stringify(this.form));
           },
           //  onReset(event) {

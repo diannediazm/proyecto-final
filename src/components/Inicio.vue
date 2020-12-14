@@ -4,7 +4,7 @@
       <b-row>
         <b-col class="texto mr-4">
           <h1 class="text-white">¿Quieres revivir tus recuerdos con la misma intensidad en cualquier momento de tu vida?</h1>
-          <b-button variant="outline-light">¡Crea tu cuenta!</b-button>
+          <b-button variant="outline-light" :to="{ name: 'Registro' }">¡Crea tu cuenta!</b-button>
         </b-col>
         <b-col>
           <b-form @submit.prevent="login" class="form">
@@ -33,7 +33,7 @@
                 ></b-form-input>
             </b-form-group>
 
-            <b-button type="submit" variant="light">Login</b-button>
+            <b-button type="submit" variant="light">Iniciar Sesión</b-button>
             
             </b-form>
         </b-col>

@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Registro from '../views/Registro.vue'
 import About from '../views/About.vue'
+import Fotos from '../views/Fotos.vue'
 
 Vue.use(VueRouter)
 
@@ -16,6 +17,11 @@ const routes = [
     path: '/registro',
     name: 'Registro',
     component: Registro
+  },
+  {
+    path: '/fotos',
+    name: 'Fotos',
+    component: Fotos
   },
   {
     path: '/about',

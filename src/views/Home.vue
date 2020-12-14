@@ -21,9 +21,9 @@ export default {
 .background {
   background-image: url('../assets/img/flecha-azul.jpg');
   background-size: cover;
-  height: 665px;
+  height: 900px;
   width: 100%;
   background-repeat: no-repeat;
-  background-position-y: -120px;
+
 }
 </style>

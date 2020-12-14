@@ -1,6 +1,10 @@
 <template>
-     <div class="container my-5">
-          <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+     
+     <div class="my-5">
+          <b-container class="bv-example-row">
+               <b-row>
+                    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+                         <b-col>
                               <b-form-group
                                    id="input-group-1"
                                    label="Primer Nombre"
@@ -13,20 +17,8 @@
                                         required
                                    ></b-form-input>
                               </b-form-group>
-                              <b-form-group
-                                   id="input-group-1"
-                                   label="Segundo Nombre"
-                                   label-for="input-1"
-                              >
-                                   <b-form-input
-                                        id="input-1"
-                                        v-model="form.segundoNombre"
-                                        placeholder="Ingrese su Segundo Nombre"
-                                        required
-                                   ></b-form-input>
-                              </b-form-group>
 
-                         <b-form-group
+                              <b-form-group
                               id="input-group-2"
                               label="Apellido Paterno"
                               label-for="input-2"
@@ -35,19 +27,6 @@
                                    id="input-2"
                                    v-model="form.apellidoPaterno"
                                    placeholder="Ingrese su Apellido Paterno"
-                                   required
-                              ></b-form-input>
-                         </b-form-group>
-
-                         <b-form-group
-                              id="input-group-2"
-                              label="Apellido Materno"
-                              label-for="input-2"
-                         >
-                              <b-form-input
-                                   id="input-2"
-                                   v-model="form.apellidoMaterno"
-                                   placeholder="Ingrese su Apellido Materno"
                                    required
                               ></b-form-input>
                          </b-form-group>
@@ -64,8 +43,35 @@
                                    required
                               ></b-form-select>
                          </b-form-group>
+                         </b-col>
+                         <b-col>
+                              <b-form-group
+                                   id="input-group-1"
+                                   label="Segundo Nombre"
+                                   label-for="input-1"
+                              >
+                                   <b-form-input
+                                        id="input-1"
+                                        v-model="form.segundoNombre"
+                                        placeholder="Ingrese su Segundo Nombre"
+                                        required
+                                   ></b-form-input>
+                              </b-form-group>
+                              
+                              <b-form-group
+                              id="input-group-2"
+                              label="Apellido Materno"
+                              label-for="input-2"
+                         >
+                              <b-form-input
+                                   id="input-2"
+                                   v-model="form.apellidoMaterno"
+                                   placeholder="Ingrese su Apellido Materno"
+                                   required
+                              ></b-form-input>
+                              </b-form-group>
 
-                         <b-form-group
+                              <b-form-group
                               id="input-group-1"
                               label="Email"
                               label-for="input-1"
@@ -93,6 +99,8 @@
                               ></b-form-input>
                          </b-form-group>
 
+
+                         </b-col>
                          <b-button type="submit" variant="primary"
                               >Submit</b-button
                          >
@@ -102,6 +110,22 @@
                               >Submit</b-button
                          >
                     </b-form>
+               </b-row>
+          </b-container>
+          
+                              
+                              
+
+                         
+
+                         
+
+                         
+
+                         
+
+                         
+                    
      </div>
 </template>
 

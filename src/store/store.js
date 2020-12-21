@@ -10,8 +10,8 @@ export default new Vuex.Store({
      actions: {
           creandoUsuarios(context, data) {
                db.collection("usuarios")
-                    .add({
-                        //  usercredencial: userId,
+                    .doc(data.userID)
+                    .set({
                          rut: data.rut,
                          primerNombre: data.primerNombre,
                          segundoNombre: data.segundoNombre,
@@ -21,9 +21,6 @@ export default new Vuex.Store({
                          fechaNacimiento: data.fechaNacimiento,
                          userID: data.userID,
                     })
-                    .then((resp) => {
-                         console.log(resp);
-                    });
           },
      },
      modules: {},

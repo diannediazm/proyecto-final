@@ -19,12 +19,10 @@ export default {
 
 <style lang="scss">
 .background {
-  background-image: url('../assets/img/cartu.jpg');
+  background-image: url('../assets/img/woman.jpg');
   background-size: cover;
-  height: 900px;
+  height: 800px;
   width: 100%;
   background-repeat: no-repeat;
-  background-position-y: -150px;
-
 }
 </style>

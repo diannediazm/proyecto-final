@@ -1,10 +1,10 @@
 <template>
-    <div>
+    <div class="background-fotos">
         <b-container>
-            <div class="text-center my-5">
+            <div class="title-fotos text-center mb-5">
                 <h1>¡Sube tus fotografías!</h1>
                 <p>No dejes que tus fotos más importantes se pierdan en dispositivos. Selecciónalas y guárdalas según fecha, significado o historia memorable.</p>
-                <img src="../assets/img/camara.jpg" alt="" class="foto">
+                <img src="../assets/img/mar.jpg" alt="" class="foto">
             </div>
             <b-row>
                 <b-col class="text-center">
@@ -73,6 +73,12 @@ export default {
 </script>
 
 <style lang="scss">
+    .title-fotos {
+        padding-top: 50px;
+    }
+    .background-fotos {
+        background-color: #f6f5f1;
+    }
     .foto {
         width: 40%;
         border-radius: 50px;

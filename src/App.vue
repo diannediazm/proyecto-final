@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-navbar toggleable type="dark" variant="dark">
-            <b-navbar-brand href="#">HUKO</b-navbar-brand>
+            <b-navbar-brand href="/">HUKO</b-navbar-brand>
 
             <b-navbar-toggle target="navbar-toggle-collapse">
             <template #default="{ expanded }">

@@ -129,11 +129,7 @@ export default {
           if (this.form.email && this.form.password && this.form.password.length >= 6){
               firebase.auth().signInWithEmailAndPassword(this.form.email, this.form.password)
               .then(resp => {
-<<<<<<< HEAD
-                  console.log(resp.user);
-=======
                   this.$store.dispatch("actualizarUserSession", resp.user.uid);
->>>>>>> 23a3867c904c2bac60da3fd3938f0470b9f15b1e
                   this.$router.push('/usuario');
               })
               .catch(error => {

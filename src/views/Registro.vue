@@ -207,12 +207,6 @@ export default {
           .auth()
           .createUserWithEmailAndPassword(this.form.email, this.form.password)
           .then((resp) => {
-<<<<<<< HEAD
-            this.form.userID = resp.user.uid
-            console.log(this.form)
-            this.$store.dispatch("creandoUsuarios", this.form);
-            this.$router.push("/usuario");
-=======
             this.form.userID = resp.user.uid;
             try {
               this.$store.dispatch("creandoUsuarios", this.form);
@@ -220,7 +214,6 @@ export default {
             } catch (error) {
               console.log(`Error creando usuario: ${error}`);
             }
->>>>>>> 23a3867c904c2bac60da3fd3938f0470b9f15b1e
           })
           .catch((error) => {
             console.error(error.code);

@@ -1,6 +1,6 @@
 <template>
     <div class="background-historias">
-        <div class="text-videos text-center">
+        <div class="text-videos text-center text-white">
             <h1>Cuántas historias que contar</h1>
             <p>Con el tiempo vamos olvidando los detalles de nuestros momentos memorables, ¡Escríbelos ahora!</p>
         </div>
@@ -48,8 +48,13 @@ export default {
 
 <style lang="scss">
 .background-historias {
-    background-color: #fae0df;
     padding-bottom: 300px;
+    background-image: url('../assets/img/abuelos.jpg');
+    background-size: cover;
+    height: 800px;
+    width: 100%;
+    background-repeat: no-repeat;
 }
+
     
 </style>

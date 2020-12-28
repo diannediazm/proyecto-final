@@ -99,8 +99,14 @@
       </b-row>
     </b-container>
        </b-container>
-    
     </div>
+    <footer class="bg-dark text-white">
+      <ul>
+        <li><i class="fab fa-facebook"></i></li>
+        <li><i class="fab fa-twitter"></i></li>
+        <li><i class="fab fa-instagram"></i></li>
+      </ul>
+    </footer>
   </div>
 </template>
 

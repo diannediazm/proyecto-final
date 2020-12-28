@@ -2,13 +2,13 @@
   <div>
 
     <b-navbar toggleable="lg" type="dark" variant="dark">
-      <b-navbar-brand href="#">HUKO</b-navbar-brand>
+      <b-navbar-brand :to="{name: 'Home'}">HUKO</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
-          <b-nav-item v-if="!uid" href="#login">Iniciar Sesión</b-nav-item>
+          <b-nav-item v-if="!uid" href="/#login">Iniciar Sesión</b-nav-item>
           <b-nav-item v-if="!uid" :to="{ name: 'Registro' }">Crear Cuenta</b-nav-item>
           <b-nav-item v-if="uid" href="#" @click="salir">Salir</b-nav-item>
         </b-navbar-nav>

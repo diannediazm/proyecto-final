@@ -9,6 +9,9 @@ import firebase from 'firebase';
 import { firebaseConfig } from "./config/firebaseConfig";
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
@@ -16,7 +19,8 @@ Vue.use(IconsPlugin);
 firebase.initializeApp(firebaseConfig);
 export const db = firebase.firestore();
 Vue.use(ElementUI);
-
+library.add(faUserSecret);
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 
 new Vue({

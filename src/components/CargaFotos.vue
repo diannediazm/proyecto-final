@@ -1,13 +1,12 @@
 <template>
-    <div>
+    <div class="background-fotos">
         <b-container>
-            <div class="text-center my-5">
+            <div class="title-fotos text-center mb-5 text-white">
                 <h1>¡Sube tus fotografías!</h1>
                 <p>No dejes que tus fotos más importantes se pierdan en dispositivos. Selecciónalas y guárdalas según fecha, significado o historia memorable.</p>
-                <img src="../assets/img/camara.jpg" alt="" class="foto">
             </div>
             <b-row>
-                <b-col class="text-center">
+                <b-col class="text-center text-white">
                     <h3 text-left>¡Diseña tu galería!</h3>
                     <p class="text-left">Elige un nombre que identifique a las fotografías: un día especial, una persona o tu mascota.</p>
                     <el-form ref="form" :model="form" label-width="120px">
@@ -73,6 +72,16 @@ export default {
 </script>
 
 <style lang="scss">
+    .title-fotos {
+        padding-top: 50px;
+    }
+    .background-fotos {
+        background-image: url('../assets/img/cargafotos.jpg');
+        background-size: cover;
+        height: 800px;
+        width: 100%;
+        background-repeat: no-repeat;
+    }
     .foto {
         width: 40%;
         border-radius: 50px;

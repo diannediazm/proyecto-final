@@ -4,6 +4,8 @@ import Home from "../views/Home.vue";
 import Registro from "../views/Registro.vue";
 import About from "../views/About.vue";
 import Fotos from "../views/Fotos.vue";
+import Videos from "../views/Videos.vue";
+import Historias from "../views/Historias.vue";
 // import firebase from "firebase";
 
 Vue.use(VueRouter);
@@ -23,6 +25,16 @@ const routes = [
           path: "/fotos",
           name: "Fotos",
           component: Fotos,
+     },
+     {
+          path: "/videos",
+          name: "Videos",
+          component: Videos,
+     },
+     {
+          path: "/historias",
+          name: "Historias",
+          component: Historias,
      },
      {
           path: "/about",

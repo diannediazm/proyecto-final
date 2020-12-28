@@ -19,11 +19,10 @@ export default {
 
 <style lang="scss">
 .background {
-  background-image: url('../assets/img/flecha-azul.jpg');
+  background-image: url('../assets/img/woman.jpg');
   background-size: cover;
-  height: 900px;
+  height: 800px;
   width: 100%;
   background-repeat: no-repeat;
-
 }
 </style>

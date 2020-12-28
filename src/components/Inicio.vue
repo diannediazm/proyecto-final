@@ -126,11 +126,10 @@ export default {
     methods: {
       login(){
           if (this.form.email && this.form.password && this.form.password.length >= 6){
-              console.log("ingresa");
               firebase.auth().signInWithEmailAndPassword(this.form.email, this.form.password)
               .then(resp => {
-                  console.log(resp.user);
-                  this.$router.push('/user');
+                  this.$store.dispatch("actualizarUserSession", resp.user.uid);
+                  this.$router.push('/about');
               })
               .catch(error => {
                   console.error(error.code);
@@ -143,7 +142,7 @@ export default {
                 } else if (error.code == "auth/user-not-found") {
                     this.$notify.error({
                     title: 'Error',
-                    message: 'Usuario no encontrado'
+                    message: 'Usuario no encontrado, favor registrarse'
                 });
                 this.$router.push('/registro')
                 }                   

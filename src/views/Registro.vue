@@ -175,9 +175,6 @@ export default {
             this.form.userID = resp.user.uid;
             try {
               this.$store.dispatch("creandoUsuarios", this.form);
-              // console.log("antes de variable global");
-              // this.globalVar=resp.user.uid;
-              // console.log("despues de variable global" + this.globalVar)
               this.$router.push("/about");
             } catch (error) {
               console.log(`Error creando usuario: ${error}`);

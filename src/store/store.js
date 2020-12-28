@@ -3,14 +3,19 @@ import Vuex from "vuex";
 import { db } from "../main";
 
 Vue.use(Vuex);
+export let userSession ="no user";
 
-
-export let userid ="no user";
-console.log(userid);
+console.log(userSession);
 export default new Vuex.Store({
      state: {},
      mutations: {},
      actions: {
+
+          actualizarUserSession(context, data){
+               userSession = data;
+               console.log('actualizarUserSession: ' + userSession);
+          },
+
           creandoUsuarios(context, data) {
                db.collection("usuarios")
                     .doc(data.userID)
@@ -26,9 +31,9 @@ export default new Vuex.Store({
                          userID: data.userID,
                     });
 
-                    userid = data.userID;
+                    userSession = data.userID;
 
-                    console.log(userid);
+                    console.log(userSession);
           },
      },
      modules: {},

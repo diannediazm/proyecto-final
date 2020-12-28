@@ -5,13 +5,13 @@
 </template>
 
 <script>
-import { userid } from '../store/store'
+import { userSession } from '../store/store'
 export default {
   name: 'About',
 
 
  beforeCreate: function(){
-    console.log("Hola:" + userid)
+    console.log("about:" + userSession)
     }
  
 }

@@ -3,7 +3,7 @@ import Vuex from "vuex";
 import { db } from "../main";
 
 Vue.use(Vuex);
-export let userSession ="no user";
+export let userSession = null;
 
 console.log(userSession);
 export default new Vuex.Store({

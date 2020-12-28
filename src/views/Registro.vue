@@ -175,7 +175,7 @@ export default {
             this.form.userID = resp.user.uid;
             try {
               this.$store.dispatch("creandoUsuarios", this.form);
-              this.$router.push("/about");
+              this.$router.push("/usuario");
             } catch (error) {
               console.log(`Error creando usuario: ${error}`);
             }

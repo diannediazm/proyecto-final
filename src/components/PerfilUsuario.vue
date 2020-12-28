@@ -1,11 +1,14 @@
 <template>
-    <div>
-        
-    </div>
+     <div></div>
 </template>
 
 <script>
+import { userSession } from "../store/store";
 export default {
-    name: 'PerfilUsuario',
-}
+     name: "PerfilUsuario",
+
+     beforeCreate: function() {
+          console.log("perfilUsuario: " + userSession);
+     },
+};
 </script>

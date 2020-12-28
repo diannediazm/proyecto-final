@@ -1,6 +1,20 @@
 <template>
   <div>
-    <b-navbar toggleable type="dark" variant="dark">
+
+    <b-navbar toggleable="lg" type="dark" variant="dark">
+      <b-navbar-brand href="#">HUKO</b-navbar-brand>
+
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav class="ml-auto">
+          <b-nav-item v-if="!uid" href="#login">Iniciar Sesión</b-nav-item>
+          <b-nav-item v-if="!uid" :to="{ name: 'Registro' }">Crear Cuenta</b-nav-item>
+          <b-nav-item v-if="uid" href="#" @click="salir">Salir</b-nav-item>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
+    <!-- <b-navbar toggleable type="dark" variant="dark">
             <b-navbar-brand href="/">HUKO</b-navbar-brand>
 
             <b-navbar-toggle target="navbar-toggle-collapse">
@@ -11,21 +25,58 @@
             </b-navbar-toggle>
 
             <b-collapse id="navbar-toggle-collapse" is-nav>
-            <b-navbar-nav class="ml-auto">
+            <b-navbar-nav class="mr-auto">
                 <b-nav-item href="#">Link 1</b-nav-item>
                 <b-nav-item href="#">Link 2</b-nav-item>
                 <b-nav-item href="#" disabled>Disabled</b-nav-item>
             </b-navbar-nav>
             </b-collapse>
-        </b-navbar>
+        </b-navbar> -->
      
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import firebase from "firebase";
+import {userSession} from './store/store';
+
 export default {
   name: 'App',
+  data() {
+    return {
+      uid: "",
+    };
+  },
+  methods: {
+    salir(){
+        firebase.auth().signOut().then(() => {
+            this.userSession = null
+            this.$store.dispatch("actualizarUserSession", userSession);
+            this.$router.replace('/');
+        }).catch((error) => {
+            console.error(error);
+        });
+      }
+  },
+
+ mounted() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        //console.log(user.displayName);
+        this.uid = user.uid;
+        // console.log("Si hay usuario con sesión activa");
+      } else {
+        //  console.log("No hay usuario con sesión activa...");
+        this.uid = "";
+      }
+    });
+  },
+
+  beforeCreate: function(){
+    console.log("App:" + userSession)
+    }
+  
 }
 </script>
 

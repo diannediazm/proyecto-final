@@ -4,7 +4,7 @@
       <h1>¿Quieres revivir tus recuerdos con la misma intensidad en cualquier momento de tu vida?</h1>
       <b-button variant="outline-light" :to="{ name: 'Registro' }">¡Crea tu cuenta!</b-button>
     </div>
-    <div class="background-inicio">
+    <div id="login" class="background-inicio">
       <b-container class="bv-example-row">
         <b-row>
           <b-col class="texto mr-4">
@@ -108,6 +108,8 @@
 
 <script>
 import firebase from 'firebase';
+import {userSession} from '../store/store';
+
 export default {
     name: 'Inicio',
     data() {
@@ -119,13 +121,19 @@ export default {
         show: true
       }
     },
+    beforeCreate: function() {
+          console.log("Inicio: " + userSession);
+     },
     methods: {
       login(){
           if (this.form.email && this.form.password && this.form.password.length >= 6){
-              console.log("ingresa");
               firebase.auth().signInWithEmailAndPassword(this.form.email, this.form.password)
               .then(resp => {
+<<<<<<< HEAD
                   console.log(resp.user);
+=======
+                  this.$store.dispatch("actualizarUserSession", resp.user.uid);
+>>>>>>> 23a3867c904c2bac60da3fd3938f0470b9f15b1e
                   this.$router.push('/usuario');
               })
               .catch(error => {
@@ -139,7 +147,7 @@ export default {
                 } else if (error.code == "auth/user-not-found") {
                     this.$notify.error({
                     title: 'Error',
-                    message: 'Usuario no encontrado'
+                    message: 'Usuario no encontrado, favor registrarse'
                 });
                 this.$router.push('/registro')
                 }                   

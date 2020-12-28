@@ -4,7 +4,7 @@
       <h1>¿Quieres revivir tus recuerdos con la misma intensidad en cualquier momento de tu vida?</h1>
       <b-button variant="outline-light" :to="{ name: 'Registro' }">¡Crea tu cuenta!</b-button>
     </div>
-    <div class="background-inicio">
+    <div id="login" class="background-inicio">
       <b-container class="bv-example-row">
         <b-row>
           <b-col class="texto mr-4">

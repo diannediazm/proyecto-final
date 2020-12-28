@@ -12,6 +12,9 @@ export default {
 
  beforeCreate: function(){
     console.log("about:" + userSession)
+    if(!userSession){
+               this.$router.push('/');
+          }
     }
  
 }

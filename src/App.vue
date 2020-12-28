@@ -8,8 +8,8 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
-          <!-- <b-nav-item v-if="!uid" to="/">Inicio</b-nav-item> -->
-          <b-nav-item v-if="!uid" :to="{ name: 'Registro' }">Registro</b-nav-item>
+          <b-nav-item v-if="!uid" href="#login">Iniciar Sesión</b-nav-item>
+          <b-nav-item v-if="!uid" :to="{ name: 'Registro' }">Crear Cuenta</b-nav-item>
           <b-nav-item v-if="uid" href="#" @click="salir">Salir</b-nav-item>
         </b-navbar-nav>
       </b-collapse>

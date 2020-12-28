@@ -9,6 +9,9 @@ export default {
 
      beforeCreate: function() {
           console.log("perfilUsuario: " + userSession);
+          if(!userSession){
+               this.$router.push('/');
+          }
      },
 };
 </script>

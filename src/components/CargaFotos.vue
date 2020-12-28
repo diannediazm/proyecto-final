@@ -76,7 +76,6 @@ export default {
         padding-top: 50px;
     }
     .background-fotos {
-        background-color: #f6f5f1;
         background-image: url('../assets/img/cargafotos.jpg');
         background-size: cover;
         height: 800px;

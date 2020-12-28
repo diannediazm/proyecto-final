@@ -72,8 +72,12 @@ export default {
 
 <style lang="scss">
 .background-videos {
-    background-color: #16a596;
     padding-bottom: 50px;
+    background-image: url('../assets/img/playa.jpg');
+    background-size: cover;
+    height: 800px;
+    width: 100%;
+    background-repeat: no-repeat;
 }
 .text-videos {
     padding-top: 50px;

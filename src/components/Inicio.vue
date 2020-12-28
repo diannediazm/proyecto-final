@@ -102,9 +102,9 @@
     </div>
     <footer class="bg-dark text-white">
       <ul>
-        <li><i class="fab fa-facebook"></i></li>
-        <li><i class="fab fa-twitter"></i></li>
-        <li><i class="fab fa-instagram"></i></li>
+        <li><b-icon icon="twitter" scale="2"></b-icon></li>
+        <li></li>
+        <li></li>
       </ul>
     </footer>
   </div>
@@ -130,7 +130,7 @@ export default {
               firebase.auth().signInWithEmailAndPassword(this.form.email, this.form.password)
               .then(resp => {
                   console.log(resp.user);
-                  this.$router.push('/user');
+                  this.$router.push('/usuario');
               })
               .catch(error => {
                   console.error(error.code);

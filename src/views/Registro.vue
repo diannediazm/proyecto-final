@@ -1,5 +1,6 @@
 <template>
-  <div class="mt-5">
+  <div class="background-registro text-white">
+    <h1 class="title-registro text-center mb-5">¡Únete a HOKU!</h1>
     <b-container class="px-5">
       <b-form @submit.prevent="createUser">
         <b-row class="my-1">
@@ -128,12 +129,46 @@
           </b-col>
         </b-row>
         <div class="text-center mt-4">
-          <b-button type="submit" variant="primary">Registrarse</b-button>
-          <b-button variant="info" class="mx-5" :to="{ name: 'Home' }"
+          <b-button type="submit" variant="light">Registrarse</b-button>
+          <b-button variant="light" class="mx-5" :to="{ name: 'Home' }"
             >Volver Inicio</b-button
           >
         </div>
       </b-form>
+    </b-container>
+    <b-container class="mt-5">
+      <b-row>
+        <b-col cols="4">
+          <i class="el-icon-user-solid"></i>
+        </b-col>
+        <b-col cols="8">
+          <h6>Tu perfil será completamente privado</h6>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col cols="4">
+          <i class="el-icon-circle-plus"></i>
+        </b-col>
+        <b-col cols="8">
+          <h6>Eliges con quién compartir información clave</h6>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col cols="4">
+          <i class="el-icon-s-flag"></i>
+        </b-col>
+        <b-col cols="8">
+          <h6>Tus datos más importantes y privados estarán respaldados en caso de emergencia</h6>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col cols="4">
+          <i class="el-icon-s-comment"></i>
+        </b-col>
+        <b-col cols="8">
+          <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, laudantium. Sed nostru</h6>
+        </b-col>
+      </b-row>
     </b-container>
   </div>
 </template>
@@ -174,7 +209,7 @@ export default {
             this.form.userID = resp.user.uid
             console.log(this.form)
             this.$store.dispatch("creandoUsuarios", this.form);
-            this.$router.push("/");
+            this.$router.push("/usuario");
           })
           .catch((error) => {
             console.error(error.code);
@@ -202,3 +237,18 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.background-registro {
+    padding-bottom: 300px;
+    background-image: url('../assets/img/pastel.jpg');
+    background-size: cover;
+    height: 800px;
+    width: 100%;
+    background-repeat: no-repeat;
+}
+.title-registro {
+  padding-top: 50px;
+}
+  
+</style>

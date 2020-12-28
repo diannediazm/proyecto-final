@@ -101,11 +101,7 @@
        </b-container>
     </div>
     <footer class="bg-dark text-white">
-      <ul>
-        <li><b-icon icon="twitter" scale="2"></b-icon></li>
-        <li></li>
-        <li></li>
-      </ul>
+      <h2 class="text-footer text-center">HOKU</h2>
     </footer>
   </div>
 </template>
@@ -196,5 +192,8 @@ export default {
 .casos-text {
   font-size: 17px;
   font-weight: 400;
+}
+.text-footer {
+  padding: 20px 0px 20px 0px;
 }
 </style>

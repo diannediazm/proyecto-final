@@ -154,7 +154,7 @@ export default {
         fechaNacimiento: "",
         email: "",
         password: "",
-        userID:"",
+        userID: "",
       },
       opcion: [
         { text: "Seleccione una opción", value: null },
@@ -164,17 +164,24 @@ export default {
     };
   },
   methods: {
+    
     createUser() {
-      if (this.form.email && this.form.password && this.form.rut) {
+      if (this.form.email && this.form.password) {
         //console.log("entro");
         firebase
           .auth()
           .createUserWithEmailAndPassword(this.form.email, this.form.password)
           .then((resp) => {
-            this.form.userID = resp.user.uid
-            console.log(this.form)
-            this.$store.dispatch("creandoUsuarios", this.form);
-            this.$router.push("/");
+            this.form.userID = resp.user.uid;
+            try {
+              this.$store.dispatch("creandoUsuarios", this.form);
+              // console.log("antes de variable global");
+              // this.globalVar=resp.user.uid;
+              // console.log("despues de variable global" + this.globalVar)
+              this.$router.push("/about");
+            } catch (error) {
+              console.log(`Error creando usuario: ${error}`);
+            }
           })
           .catch((error) => {
             console.error(error.code);

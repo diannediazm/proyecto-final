@@ -4,6 +4,9 @@ import { db } from "../main";
 
 Vue.use(Vuex);
 
+
+export let userid ="no user";
+console.log(userid);
 export default new Vuex.Store({
      state: {},
      mutations: {},
@@ -19,8 +22,13 @@ export default new Vuex.Store({
                          apellidoMaterno: data.apellidoMaterno,
                          sexo: data.sexo,
                          fechaNacimiento: data.fechaNacimiento,
+                         email: data.email,
                          userID: data.userID,
-                    })
+                    });
+
+                    userid = data.userID;
+
+                    console.log(userid);
           },
      },
      modules: {},

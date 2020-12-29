@@ -3,17 +3,23 @@ import Vuex from "vuex";
 import { db } from "../main";
 
 Vue.use(Vuex);
-export let userSession = null;
 
-console.log(userSession);
 export default new Vuex.Store({
-     state: {},
-     mutations: {},
+     state: {
+          userSession: null
+     },
+     mutations: {
+          updateUserSessionMut(state, usuario){
+               console.log('entrando en la mutacion'); 
+               state.userSession = usuario
+               console.log(state.userSession);
+          }
+     },
      actions: {
 
-          actualizarUserSession(context, data){
-               userSession = data;
-               console.log('actualizarUserSession: ' + userSession);
+          updateUserSessionAct(context, data){
+               console.log('entrando a la accion')
+               context.commit('updateUserSessionMut', data)
           },
 
           creandoUsuarios(context, data) {
@@ -31,9 +37,9 @@ export default new Vuex.Store({
                          userID: data.userID,
                     });
 
-                    userSession = data.userID;
+                    this.userSession = data.userID;
 
-                    console.log(userSession);
+                    console.log(this.userSession);
           },
      },
      modules: {},

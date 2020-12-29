@@ -108,7 +108,6 @@
 
 <script>
 import firebase from 'firebase';
-import {userSession} from '../store/store';
 
 export default {
     name: 'Inicio',
@@ -121,15 +120,13 @@ export default {
         show: true
       }
     },
-    beforeCreate: function() {
-          console.log("Inicio: " + userSession);
-     },
+    
     methods: {
       login(){
           if (this.form.email && this.form.password && this.form.password.length >= 6){
               firebase.auth().signInWithEmailAndPassword(this.form.email, this.form.password)
               .then(resp => {
-                  this.$store.dispatch("actualizarUserSession", resp.user.uid);
+                  this.$store.dispatch("updateUserSessionAct", resp.user.uid);
                   this.$router.push('/usuario');
               })
               .catch(error => {

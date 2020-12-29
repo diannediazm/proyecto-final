@@ -10,6 +10,7 @@
         <b-navbar-nav class="ml-auto">
           <b-nav-item v-if="!uid" href="/#login">Iniciar Sesión</b-nav-item>
           <b-nav-item v-if="!uid" :to="{ name: 'Registro' }">Crear Cuenta</b-nav-item>
+          <b-nav-item v-if="uid" :to="{name: 'About'}">About</b-nav-item>
           <b-nav-item v-if="uid" href="#" @click="salir">Salir</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
@@ -39,7 +40,6 @@
 
 <script>
 import firebase from "firebase";
-import {userSession} from './store/store';
 
 export default {
   name: 'App',
@@ -51,8 +51,8 @@ export default {
   methods: {
     salir(){
         firebase.auth().signOut().then(() => {
-            this.userSession = null
-            this.$store.dispatch("actualizarUserSession", userSession);
+            let sesionUsuario = null
+            this.$store.dispatch("updateUserSessionAct", sesionUsuario);
             this.$router.replace('/');
         }).catch((error) => {
             console.error(error);
@@ -72,10 +72,6 @@ export default {
       }
     });
   },
-
-  beforeCreate: function(){
-    console.log("App:" + userSession)
-    }
   
 }
 </script>

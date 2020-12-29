@@ -5,16 +5,12 @@
 </template>
 
 <script>
-import { userSession } from '../store/store'
 export default {
   name: 'About',
 
 
  beforeCreate: function(){
-    console.log("about:" + userSession)
-    if(!userSession){
-               this.$router.push('/');
-          }
+      console.log("about: " + this.$store.state.userSession);
     }
  
 }

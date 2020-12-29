@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import { db } from "../main";
 
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -11,7 +12,7 @@ export default new Vuex.Store({
      mutations: {
           updateUserSessionMut(state, usuario){
                console.log('entrando en la mutacion'); 
-               state.userSession = usuario
+               state.userSession = usuario;
                console.log(state.userSession);
           }
      },

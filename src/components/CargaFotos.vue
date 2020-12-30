@@ -24,7 +24,7 @@
                         <el-input type="textarea" v-model="form.desc"></el-input>
                     </el-form-item>
                     <el-form-item>
-                        <el-button type="primary" @click="onSubmit">Crear</el-button>
+                        <el-button type="primary" @click.prevent="onSubmit">Crear</el-button>
                         <el-button>Cancelar</el-button>
                     </el-form-item>
                     </el-form>
@@ -33,7 +33,10 @@
                     <el-upload
                     class="upload-demo my-5"
                     drag
-                    action= ""
+                    action="https://jsonplaceholder.typicode.com/posts/"
+                    :on-preview="handlePreview"
+                    :on-remove="handleRemove"
+                    :file-list="fileList"
                     :rules="rules"
                     accept="image/png, image/jpg"
                     multiple
@@ -51,7 +54,7 @@
 </template>
 
 <script>
-import firebase from 'firebase';
+//import firebase from 'firebase';
 
 export default {
     name: 'CargaFotos',
@@ -65,19 +68,28 @@ export default {
         },
         rules: [
             value => !value || value.size < 2000000 || 'El tamaño de la imagen debe ser inferior a 2MB'
-        ]
+        ],
+        fileList: [],
       }
     },
     methods: {
-      onSubmit(imagen) {
-          if (imagen) {
+        handleRemove(file, fileList) {
+            console.log(file, fileList);
+        },
+        handlePreview(file) {
+            console.log(file);
+        }, 
+        onSubmit(imagen) {
+          console.log(imagen);
+          console.log(this.fileList[0]);
+          /*if (imagen) {
               let imagen = event.target.files[0];
               let storageRef = firebase.storage().ref('imagen/'+ imagen.name);
               storageRef.put(imagen).then((snapshot) => {
                   console.log('funciona');
                   console.warn(snapshot.bytesTransferred / snapshot.totalBytes);
               });
-          }
+          }*/
       }
     }
           

@@ -26,6 +26,6 @@ export const storage = firebase.storage();
 
 new Vue({
   router,
-  store,
+  store,  
   render: h => h(App)
 }).$mount('#app')

@@ -33,14 +33,14 @@
                     <el-upload
                     class="upload-demo my-5"
                     drag
-                    action="https://jsonplaceholder.typicode.com/posts/"
-                    :on-preview="handlePreview"
-                    :on-remove="handleRemove"
-                    :file-list="fileList"
-                    multiple>
+                    :rules="rules"
+                    accept="image/png, image/jpg"
+                    multiple
+                    counter
+                    show size >
                     <i class="el-icon-upload"></i>
                     <div class="el-upload__text">Suelta tu archivo aquí o <em>haz clic para cargar</em></div>
-                    <div slot="tip" class="el-upload__tip">Solo archivos jpg/png con un tamaño menor de 500kb</div>
+                    <div slot="tip" class="el-upload__tip">Solo archivos jpg/png con un tamaño menor de 2MB</div>
                     </el-upload>
                     <el-progress :text-inside="true" :stroke-width="26" :percentage="70"></el-progress>
                 </b-col>
@@ -50,6 +50,8 @@
 </template>
 
 <script>
+import firebase from 'firebase';
+
 export default {
     name: 'CargaFotos',
     data() {
@@ -59,11 +61,20 @@ export default {
           date1: '',
           date2: '',
           desc: ''
-        }
+        },
+        rules: [
+            value => !value || value.size < 2000000 || 'El tamaño de la imagen debe ser inferior a 2MB'
+        ]
       }
     },
     methods: {
-      onSubmit() {
+      onSubmit(imagen) {
+          if (imagen) {
+              let storageRef = firebase.storage().ref('image/'+ imagen.name);
+              storageRef.getDownloadURL().then((downloadURL) => {
+               console.log('Archivo disponible en ', downloadURL)   
+              })
+          }
         console.log('submit!');
       }
     }

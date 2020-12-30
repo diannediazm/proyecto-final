@@ -21,7 +21,7 @@ export const db = firebase.firestore();
 Vue.use(ElementUI);
 library.add(faUserSecret);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
-
+export const storage = firebase.storage();
 
 new Vue({
   router,

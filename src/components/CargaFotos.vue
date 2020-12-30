@@ -33,6 +33,7 @@
                     <el-upload
                     class="upload-demo my-5"
                     drag
+                    action= ""
                     :rules="rules"
                     accept="image/png, image/jpg"
                     multiple
@@ -70,16 +71,17 @@ export default {
     methods: {
       onSubmit(imagen) {
           if (imagen) {
-              let storageRef = firebase.storage().ref('image/'+ imagen.name);
-              storageRef.getDownloadURL().then((downloadURL) => {
-               console.log('Archivo disponible en ', downloadURL)   
-              })
+              let imagen = event.target.files[0];
+              let storageRef = firebase.storage().ref('imagen/'+ imagen.name);
+              storageRef.put(imagen).then((snapshot) => {
+                  console.log('funciona');
+                  console.warn(snapshot.bytesTransferred / snapshot.totalBytes);
+              });
           }
-        console.log('submit!');
       }
     }
-  }
-
+          
+}
 </script>
 
 <style lang="scss">

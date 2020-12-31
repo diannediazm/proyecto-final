@@ -158,7 +158,10 @@
           <i class="el-icon-s-flag"></i>
         </b-col>
         <b-col cols="8">
-          <h6>Tus datos más importantes y privados estarán respaldados en caso de emergencia</h6>
+          <h6>
+            Tus datos más importantes y privados estarán respaldados en caso de
+            emergencia
+          </h6>
         </b-col>
       </b-row>
       <b-row>
@@ -166,7 +169,10 @@
           <i class="el-icon-s-comment"></i>
         </b-col>
         <b-col cols="8">
-          <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, laudantium. Sed nostru</h6>
+          <h6>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat,
+            laudantium. Sed nostru
+          </h6>
         </b-col>
       </b-row>
     </b-container>
@@ -199,7 +205,6 @@ export default {
     };
   },
   methods: {
-    
     createUser() {
       if (this.form.email && this.form.password) {
         //console.log("entro");
@@ -208,12 +213,8 @@ export default {
           .createUserWithEmailAndPassword(this.form.email, this.form.password)
           .then((resp) => {
             this.form.userID = resp.user.uid;
-            try {
-              this.$store.dispatch("creandoUsuarios", this.form);
-              this.$router.push("/usuario");
-            } catch (error) {
-              console.log(`Error creando usuario: ${error}`);
-            }
+            this.$store.dispatch("creandoUsuarios", this.form);
+            this.$router.push("/usuario");
           })
           .catch((error) => {
             console.error(error.code);
@@ -244,15 +245,14 @@ export default {
 
 <style lang="scss">
 .background-registro {
-    padding-bottom: 300px;
-    background-image: url('../assets/img/pastel.jpg');
-    background-size: cover;
-    height: 800px;
-    width: 100%;
-    background-repeat: no-repeat;
+  padding-bottom: 300px;
+  background-image: url("../assets/img/pastel.jpg");
+  background-size: cover;
+  height: 800px;
+  width: 100%;
+  background-repeat: no-repeat;
 }
 .title-registro {
   padding-top: 50px;
 }
-  
 </style>

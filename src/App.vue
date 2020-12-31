@@ -10,6 +10,7 @@
         <b-navbar-nav class="ml-auto">
           <b-nav-item v-if="!uid" href="/#login">Iniciar Sesión</b-nav-item>
           <b-nav-item v-if="!uid" :to="{ name: 'Registro' }">Crear Cuenta</b-nav-item>
+          <b-nav-item v-if="uid" :to="{name: 'Historias'}">Historias</b-nav-item>
           <b-nav-item v-if="uid" :to="{name: 'About'}">About</b-nav-item>
           <b-nav-item v-if="uid" href="#" @click="salir">Salir</b-nav-item>
         </b-navbar-nav>
@@ -51,8 +52,6 @@ export default {
   methods: {
     salir(){
         firebase.auth().signOut().then(() => {
-            let sesionUsuario = null
-            this.$store.dispatch("updateUserSessionAct", sesionUsuario);
             this.$router.replace('/');
         }).catch((error) => {
             console.error(error);
@@ -65,10 +64,13 @@ export default {
       if (user) {
         //console.log(user.displayName);
         this.uid = user.uid;
+        this.$store.dispatch("updateUserSessionAct", user.uid);
         // console.log("Si hay usuario con sesión activa");
       } else {
         //  console.log("No hay usuario con sesión activa...");
         this.uid = "";
+        let sesionUsuario = null
+        this.$store.dispatch("updateUserSessionAct", sesionUsuario);
       }
     });
   },

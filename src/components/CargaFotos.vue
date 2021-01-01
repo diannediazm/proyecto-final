@@ -33,7 +33,6 @@
                     <el-upload
                     class="upload-demo my-5"
                     drag
-                    action="https://jsonplaceholder.typicode.com/posts/"
                     :on-preview="handlePreview"
                     :on-remove="handleRemove"
                     :file-list="fileList"

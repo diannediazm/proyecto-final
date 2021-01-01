@@ -11,15 +11,13 @@
             </el-form-item>
             <b-form-textarea
             id="textarea"
-            v-model="text"
+            v-model="form.text"
             placeholder="Empieza a escribir..."
             rows="3"
             max-rows="6"
             ></b-form-textarea>
-
-            <pre class="mt-3 mb-0">{{ text }}</pre>
             <el-form-item>
-                <el-button type="primary" @click="onSubmit">Guardar</el-button>
+                <el-button type="primary" @click.prevent="cargarHistoria">Guardar</el-button>
                 <el-button>Cancelar</el-button>
             </el-form-item>
             </el-form>
@@ -28,6 +26,19 @@
 </template>
 
 <script>
+//import firebase from 'firebase';
+
+let date = new Date();
+let day = date.getDate();
+let month = date.getMonth() + 1;
+let year = date.getFullYear();
+let hora = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+
+let fecha = `${day}-${month}-${year} ${hora}`
+//let timestamp = firebase.firestore.FieldValue.serverTimestamp()
+
+
+
 export default {
     name: 'CargaHistorias',
     data() {
@@ -35,13 +46,33 @@ export default {
         form: {
           title: '',
           text: '',
+          idUser: '',
+          //fechaHora: timestamp,
         }
       }
     },
     methods: {
-      onSubmit() {
+      cargarHistoria() {
+        try {
+          setTimeout(() => {
+            this.form.idUser = this.$store.state.userSession;
+            this.$store.dispatch("cargandoHistorias", this.form);
+            alert("historia cargada")
+          }, 2500)
+        } catch (error) {
+          alert("Error", error)
+        }
+
         console.log('submit!');
       }
+    },
+    
+    created() {
+      console.log("historias: " + fecha );
+      setTimeout(() => {
+        console.log("historias: " + this.$store.state.userSession);
+      },1000)
+      
     }
 }
 </script>

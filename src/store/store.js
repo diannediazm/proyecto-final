@@ -1,9 +1,12 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { db } from "../main";
+import firebase from "firebase";
 
 
 Vue.use(Vuex);
+
+const timeSave = firebase.firestore.FieldValue.serverTimestamp()
 
 export default new Vuex.Store({
      state: {
@@ -41,6 +44,17 @@ export default new Vuex.Store({
                     this.userSession = data.userID;
 
                     console.log(this.userSession);
+          },
+
+          cargandoHistorias(context, data){
+               db.collection("historias")
+                    .doc()
+                    .set({
+                         title: data.title,
+                         text: data.text,
+                         idUser: data.idUser,
+                         fechaHora: timeSave,
+                    });
           },
      },
      modules: {},

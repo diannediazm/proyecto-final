@@ -16,8 +16,8 @@
             rows="3"
             max-rows="6"
             ></b-form-textarea>
-            <el-form-item>
-                <el-button type="primary" @click.prevent="cargarHistoria">Guardar</el-button>
+            <el-form-item class="my-5 text-center">
+                <el-button type="light" @click.prevent="cargarHistoria">Guardar</el-button>
                 <el-button>Cancelar</el-button>
             </el-form-item>
             </el-form>

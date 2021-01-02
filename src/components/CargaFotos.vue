@@ -20,30 +20,33 @@
                             </el-col>
                         </el-form-item>
                         <p class="text-left">Escribe alguna anécdota, historia o incluso algún secreto relacionado.</p>
-                        <el-form-item label="Activity form">
+                        <el-form-item label="Descripción">
                             <el-input type="textarea" v-model="form.desc"></el-input>
                         </el-form-item>
                         <el-form-item>
-                            <el-button type="primary" @click.prevent.stop="onSubmit">Crear</el-button>
+                            <el-upload
+                            class="upload-demo"
+                            drag
+                            :http-request="upload"
+                            action="cargaArchivo"
+                            :on-preview="handlePreview"
+                            :on-remove="handleRemove"
+                            :file-list="fileList"
+                            multiple>
+                            <i class="el-icon-upload"></i>
+                            <div class="el-upload__text">Suelta tu archivo aquí o <em>haz clic para cargar</em></div>
+                            <div slot="tip" class="el-upload__tip">Solo archivos jpg/png con un tamaño menor de 500kb</div>
+                            </el-upload>
+                            <el-progress :text-inside="true" :stroke-width="26" :percentage="0"></el-progress>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="light" @click.prevent.stop="onSubmit">Crear</el-button>
                             <el-button>Cancelar</el-button>
                         </el-form-item>
                     </el-form>
                 </b-col>
-
             </b-row>
-            <el-upload
-                class="upload-demo"
-                drag
-                :http-request="upload"
-                action="cargaArchivo"
-                :on-preview="handlePreview"
-                :on-remove="handleRemove"
-                :file-list="fileList"
-                multiple>
-                <i class="el-icon-upload"></i>
-                <div class="el-upload__text">Suelta tu archivo aquí o <em>haz clic para cargar</em></div>
-                <div slot="tip" class="el-upload__tip">Solo archivos jpg/png con un tamaño menor de 500kb</div>
-            </el-upload>
+            
         </b-container>
     </div>
 </template>
@@ -58,12 +61,14 @@ export default {
         form: {
           name: '',
           date1: '',
-          date2: '',
           desc: ''
         },
-        rules: [
-            value => !value || value.size < 2000000 || 'El tamaño de la imagen debe ser inferior a 2MB'
-        ],
+        rules: {
+            name: [
+            { required: true, message: 'Ingresa un nombre para tu fotografía', trigger: 'blur' },
+            { min: 3, max: 5, message: 'El nombre debe tener de tres a 15 letras', trigger: 'blur' }
+          ],
+        },   
         fileList: [],
         archivo: {}
       }
@@ -90,8 +95,17 @@ export default {
               storageRef.put(this.archivo).then((snapshot) => {
                   console.log('funciona');
                   console.warn(snapshot.bytesTransferred / snapshot.totalBytes);
+              }).then (() => {
+              this.$notify({
+                title: '¡Subida exitosa!',
+                message: 'Tu fotografía se subió',
+                type: 'success'
               });
+            });
           }
+      },
+      format(percentage) {
+        return percentage === 100 ? 'Full' : `${percentage}%`;
       }
     }
           
@@ -105,7 +119,7 @@ export default {
     .background-fotos {
         background-image: url('../assets/img/cargafotos.jpg');
         background-size: cover;
-        height: 800px;
+        height: 1000px;
         width: 100%;
         background-repeat: no-repeat;
     }
@@ -116,4 +130,5 @@ export default {
     .share {
         justify-content: center;
     }
+    
 </style>

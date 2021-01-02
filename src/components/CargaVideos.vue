@@ -6,22 +6,7 @@
         </div>
         <b-container>
             <b-row>
-                <b-col>
-                    <el-upload
-                    class="upload-demo my-5"
-                    drag
-                    action="https://jsonplaceholder.typicode.com/posts/"
-                    :on-preview="handlePreview"
-                    :on-remove="handleRemove"
-                    :file-list="fileList"
-                    multiple>
-                    <i class="el-icon-upload"></i>
-                    <div class="el-upload__text">Suelta tu archivo aquí o <em>haz clic para cargar</em></div>
-                    <div slot="tip" class="el-upload__tip">Solo archivos jpg/png con un tamaño menor de 500kb</div>
-                    </el-upload>
-                    <el-progress :text-inside="true" :stroke-width="26" :percentage="70"></el-progress>
-                </b-col>
-                <b-col class="my-4">
+                <b-col class="text-center my-4">
                     <h3 text-left>¡Sube tus videos!</h3>
                     <p class="text-left">Elige un nombre para el video: un día o alguien especial</p>
                     <el-form ref="form" :model="form" label-width="120px">
@@ -39,7 +24,22 @@
                         <el-input type="textarea" v-model="form.desc"></el-input>
                     </el-form-item>
                     <el-form-item>
-                        <el-button type="primary" @click="onSubmit">Subir</el-button>
+                        <el-upload
+                        class="upload-demo"
+                        drag
+                        :http-request="upload"
+                        action="cargaArchivo"
+                        :on-preview="handlePreview"
+                        :on-remove="handleRemove"
+                        :file-list="fileList"
+                        multiple>
+                        <i class="el-icon-upload"></i>
+                        <div class="el-upload__text">Suelta tu archivo aquí o <em>haz clic para cargar</em></div>
+                        <div slot="tip" class="el-upload__tip">Solo archivos jpg/png con un tamaño menor de 500kb</div>
+                        </el-upload>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="light" @click="onSubmit">Subir</el-button>
                         <el-button>Cancelar</el-button>
                     </el-form-item>
                     </el-form>
@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import firebase from 'firebase';
 export default {
     name: 'CargaVideos',
     data() {
@@ -59,13 +60,45 @@ export default {
           date1: '',
           date2: '',
           desc: ''
-        }
+        },
+        rules: [
+            value => !value || value.size < 100000000 || 'El tamaño del video debe ser inferior a 1GB'
+        ],
+        fileList: [],
+        archivo: {}
       }
     },
     methods: {
-      onSubmit() {
-        console.log('submit!');
-      }
+      handleRemove(file, fileList) {
+            console.log(file, fileList);
+        },
+        handlePreview(file) {
+            console.log(file);
+        },
+        handleExceed(files, fileList) {
+            this.$message.warning(`El límite es 3, haz seleccionado ${files.length} archivos esta vez, añade hasta ${files.length + fileList.length}`);
+        },
+        upload(file){
+            console.log(file);
+            this.archivo = file.file;
+        },
+        onSubmit(event) {
+          console.log(event);
+          console.log(this.archivo);
+          if (this.archivo) {
+              let storageRef = firebase.storage().ref('videos'+ this.archivo.name);
+              storageRef.put(this.archivo).then((snapshot) => {
+                  console.log('funciona');
+                  console.warn(snapshot.bytesTransferred / snapshot.totalBytes);
+              }).then (() => {
+              this.$notify({
+                title: '¡Subida exitosa!',
+                message: 'Tu video se subió',
+                type: 'success'
+              });
+            });
+        }  
+    }
     }
 }
 </script>
@@ -75,7 +108,7 @@ export default {
     padding-bottom: 50px;
     background-image: url('../assets/img/playa.jpg');
     background-size: cover;
-    height: 800px;
+    height: 1000px;
     width: 100%;
     background-repeat: no-repeat;
 }

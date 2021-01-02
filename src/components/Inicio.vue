@@ -76,7 +76,7 @@
         <b-card-text class="my-3">
           ¿Recuerdas tu primer beso? La memoria es frágil. Escribe acá eso que no le cuentas a nadie.
         </b-card-text>
-        <b-button href="/fotos" variant="info" class="mt-4">Sube tus historias</b-button>
+        <b-button href="/historias" variant="info" class="mt-4">Sube tus historias</b-button>
       </b-card>
     </b-card-group>
     <b-container class="casos my-5">

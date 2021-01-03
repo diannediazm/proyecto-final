@@ -70,6 +70,12 @@ export default {
             { required: true, message: 'Ingresa un nombre para tu fotografía', trigger: 'blur' },
             { min: 3, max: 5, message: 'El nombre debe tener de tres a 15 letras', trigger: 'blur' }
           ],
+            date1: [
+                { type: 'date', required: true, message: 'Elige una fecha', trigger: 'change' }
+          ],
+            desc: [
+                { required: true, message: 'Por favor, escribe sobre la fotografía', trigger: 'blur' }
+          ]
         },   
         fileList: [],
         archivo: {}

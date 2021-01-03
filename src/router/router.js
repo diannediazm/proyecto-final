@@ -26,26 +26,41 @@ const routes = [
           path: "/fotos",
           name: "Fotos",
           component: Fotos,
+          meta:{
+               login: true,
+          }
      },
      {
           path: "/videos",
           name: "Videos",
           component: Videos,
+          meta:{
+               login: true,
+          }
      },
      {
           path: "/historias",
           name: "Historias",
           component: Historias,
+          meta:{
+               login: true,
+          }
      },
      {
           path: "/usuario",
           name: "Usuario",
           component: Usuario,
+          meta:{
+               login: true,
+          }
      },
      {
           path: "/about",
           name: "About",
           component: About,
+          meta:{
+               login: true,
+          }
      },
 ];
 

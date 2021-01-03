@@ -109,7 +109,7 @@ export default {
                         this.form.userID = this.$store.state.userSession;
                         this.$store.dispatch("cargandoFotos", this.form);
                         this.$router.push('/usuario')
-                    })
+                    });
                     this.$notify({
                         title: '¡Subida exitosa!',
                         message: 'Tu fotografía se subió',

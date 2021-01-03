@@ -74,7 +74,7 @@ export default new Vuex.Store({
                     name: data.name,
                     date1: data.date1,
                     desc: data.desc,
-                    photoURL: data.photoURL,
+                    videoURL: data.videoURL,
                     userID: data.userID,
                     fechaHora: timeSave,
                });

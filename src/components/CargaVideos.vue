@@ -87,11 +87,24 @@ export default {
           console.log(event);
           console.log(this.archivo);
           if (this.archivo) {
-              let storageRef = firebase.storage().ref('videos'+ this.archivo.name);
+              let userid = this.$store.state.userSession;
+              let storageRef = firebase.storage().ref(userid +'/videos/'+ this.archivo.name);
               storageRef.put(this.archivo).then((snapshot) => {
                   console.log('funciona');
                   console.warn(snapshot.bytesTransferred / snapshot.totalBytes);
               }).then (() => {
+
+                  setTimeout(()=>{
+                        this.subiendo = 0;
+                    },1500);
+                    storageRef.getDownloadURL().then((downloadURL) =>{
+                        console.log('File available at', downloadURL);
+                        this.form.videoURL = downloadURL;
+                        this.form.userID = this.$store.state.userSession;
+                        this.$store.dispatch("cargandoVideos", this.form);
+                        this.$router.push('/usuario')
+                    });
+
               this.$notify({
                 title: '¡Subida exitosa!',
                 message: 'Tu video se subió',

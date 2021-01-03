@@ -2,6 +2,17 @@
   <div class="background-registro text-white">
     <h1 class="title-registro text-center mb-5">¡Únete a HOKU!</h1>
     <b-container class="px-5">
+      <el-upload
+        class="avatar-uploader text-center"
+        :http-request="upload"
+        action="cargaArchivo"
+        :show-file-list="false"
+        :on-success="handleAvatarSuccess"
+        :before-upload="beforeAvatarUpload">
+        <img v-if="imageUrl" :src="imageUrl" class="avatar">
+        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+      </el-upload>
+      <h5 class="text-center mb-4">Sube tu foto de perfil</h5>
       <b-form @submit.prevent="createUser">
         <b-row class="my-1">
           <b-col sm="2">
@@ -184,6 +195,7 @@ import firebase from "firebase";
 export default {
   data() {
     return {
+      imageUrl: '',
       form: {
         rut: "",
         primerNombre: "",
@@ -201,6 +213,8 @@ export default {
         "Femenino",
         "Masculino",
       ],
+      fileList: [],
+      archivo: {}
     };
   },
   methods: {
@@ -238,7 +252,26 @@ export default {
         message: `${error.message}`,
       });
     },
-  },
+    handleAvatarSuccess(res, file) {
+      this.imageUrl = URL.createObjectURL(file.raw);
+    },
+    beforeAvatarUpload(file) {
+      const isJPG = file.type === 'image/jpeg';
+      const isLt2M = file.size / 1024 / 1024 < 2;
+
+      if (!isJPG) {
+        this.$message.error('¡La imagen debe estar en formato JPG!');
+      }
+      if (!isLt2M) {
+        this.$message.error('¡La imagen excede los 2MB!');
+      }
+      return isJPG && isLt2M;
+    },
+    upload(file){
+      console.log(file);
+      this.archivo = file.file;
+    },
+  }
 };
 </script>
 
@@ -247,11 +280,39 @@ export default {
   padding-bottom: 300px;
   background-image: url("../assets/img/pastel.jpg");
   background-size: cover;
-  height: 800px;
+  height: 900px;
   width: 100%;
   background-repeat: no-repeat;
 }
 .title-registro {
   padding-top: 50px;
 }
+.avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    background-color: #fae0df ;
+  }
+  .avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+  .el-icon-plus, .avatar-uploader-icon {
+    line-height: 160px !important;
+  }
+  
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  }
 </style>

@@ -4,7 +4,7 @@
             <h1>Cuántas historias que contar</h1>
             <p>Con el tiempo vamos olvidando los detalles de nuestros momentos memorables, ¡Escríbelos ahora!</p>
         </div>
-        <b-container>
+        <b-container class="formulario">
             <el-form ref="form" :model="form" label-width="120px">
             <el-form-item label="Título">
                 <el-input v-model="form.title"></el-input>

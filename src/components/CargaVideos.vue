@@ -6,7 +6,7 @@
         </div>
         <b-container>
             <b-row>
-                <b-col class="text-center my-4">
+                <b-col class="text-center my-4 formulario">
                     <h3 text-left>¡Sube tus videos!</h3>
                     <p class="text-left">Elige un nombre para el video: un día o alguien especial</p>
                     <el-form ref="form" :model="form" label-width="120px">
@@ -20,7 +20,7 @@
                         </el-col>
                     </el-form-item>
                     <p class="text-left">Escribe alguna anécdota, historia o incluso algún secreto relacionado.</p>
-                    <el-form-item label="Activity form">
+                    <el-form-item label="Descripción">
                         <el-input type="textarea" v-model="form.desc"></el-input>
                     </el-form-item>
                     <el-form-item>

@@ -6,9 +6,9 @@
                 <p>No dejes que tus fotos más importantes se pierdan en dispositivos. Selecciónalas y guárdalas según fecha, significado o historia memorable.</p>
             </div>
             <b-row>
-                <b-col class="text-center text-white">
+                <b-col class="text-center text-white formulario">
                     <h3 text-left>¡Diseña tu galería!</h3>
-                    <p class="text-left">Elige un nombre que identifique a las fotografías: un día especial, una persona o tu mascota.</p>
+                    <p>Elige un nombre que identifique a las fotografías: un día especial, una persona o tu mascota.</p>
                     <el-form ref="form" :model="form" label-width="120px">
                         <el-form-item label="Nombre">
                             <el-input v-model="form.name"></el-input>
@@ -150,5 +150,12 @@ export default {
     .share {
         justify-content: center;
     }
-    
+    .el-form-item__label {
+        color: white !important;
+    }
+    .formulario {
+        background-color: rgba(77, 77, 77, 0.4);
+        padding: 50px;
+        border-radius: 50px;
+    }
 </style>

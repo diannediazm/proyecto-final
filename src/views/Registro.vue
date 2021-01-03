@@ -170,8 +170,7 @@
         </b-col>
         <b-col cols="8">
           <h6>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat,
-            laudantium. Sed nostru
+            ¡La memoria es frágil! Guarda hoy los detalles de tus momentos épicos
           </h6>
         </b-col>
       </b-row>

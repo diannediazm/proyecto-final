@@ -10,6 +10,7 @@
         <b-navbar-nav class="ml-auto">
           <b-nav-item v-if="!uid" href="/#login">Iniciar Sesión</b-nav-item>
           <b-nav-item v-if="!uid" :to="{ name: 'Registro' }">Crear Cuenta</b-nav-item>
+          <b-nav-item v-if="uid" :to="{name: 'Fotos'}">Fotos</b-nav-item>
           <b-nav-item v-if="uid" :to="{name: 'Historias'}">Historias</b-nav-item>
           <b-nav-item v-if="uid" :to="{name: 'About'}">About</b-nav-item>
           <b-nav-item v-if="uid" href="#" @click="salir">Salir</b-nav-item>

@@ -10,19 +10,22 @@ import { firebaseConfig } from "./config/firebaseConfig";
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import locale from 'element-ui/lib/locale/lang/es';
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
 
-Vue.config.productionTip = false;
+firebase.initializeApp(firebaseConfig);
+
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
-firebase.initializeApp(firebaseConfig);
-export const db = firebase.firestore();
 Vue.use(ElementUI, { locale })
-library.add(faUserSecret);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
+library.add(faUserSecret);
+
+export const db = firebase.firestore();
 export const storage = firebase.storage();
+
+Vue.config.productionTip = false;
 
 new Vue({
   router,

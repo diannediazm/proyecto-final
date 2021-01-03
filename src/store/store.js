@@ -42,8 +42,6 @@ export default new Vuex.Store({
                     });
 
                     this.userSession = data.userID;
-
-                    console.log(this.userSession);
           },
 
           cargandoHistorias(context, data){
@@ -55,6 +53,31 @@ export default new Vuex.Store({
                          idUser: data.idUser,
                          fechaHora: timeSave,
                     });
+          },
+
+          cargandoFotos(context, data){
+               db.collection("fotos")
+               .doc()
+               .set({
+                    name: data.name,
+                    date1: data.date1,
+                    desc: data.desc,
+                    photoURL: data.photoURL,
+                    userID: data.userID,
+                    fechaHora: timeSave,
+               });
+          },
+          cargandoVideos(context, data){
+               db.collection("videos")
+               .doc()
+               .set({
+                    name: data.name,
+                    date1: data.date1,
+                    desc: data.desc,
+                    photoURL: data.photoURL,
+                    userID: data.userID,
+                    fechaHora: timeSave,
+               });
           },
      },
      modules: {},

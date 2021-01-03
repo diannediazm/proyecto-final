@@ -58,8 +58,9 @@ export default {
         form: {
           name: '',
           date1: '',
-          date2: '',
-          desc: ''
+          desc: '',
+          videoURL: '',
+          userID: ''
         },
         rules: [
             value => !value || value.size < 100000000 || 'El tamaño del video debe ser inferior a 1GB'

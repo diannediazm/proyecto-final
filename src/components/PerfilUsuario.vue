@@ -22,12 +22,14 @@
 
 export default {
      name: "PerfilUsuario",
+     
 
-     beforeCreate: function() {
-          console.log("perfilUsuario: " + this.$store.state.userSession);
-          
-     },
-};
+          beforeCreate: function() {
+               console.log("perfilUsuario: " + this.$store.state.userSession);
+               
+          },
+     }
+
 </script>
 
 <style lang="scss">

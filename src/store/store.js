@@ -12,6 +12,11 @@ export default new Vuex.Store({
      state: {
           userSession: null
      },
+     getters: {
+          mostrarData(state) {
+               return state.userSession;
+          }
+     },
      mutations: {
           updateUserSessionMut(state, usuario){
                console.log('entrando en la mutacion'); 

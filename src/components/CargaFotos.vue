@@ -7,8 +7,8 @@
             </div>
             <b-row>
                 <b-col class="text-center text-white formulario">
-                    <h3 text-left>¡Diseña tu galería!</h3>
-                    <p>Elige un nombre que identifique a las fotografías: un día especial, una persona o tu mascota.</p>
+                    <h3>Diseña tu galería</h3>
+                    <p class="text-left">Elige un nombre que identifique a las fotografías: un día especial, una persona o tu mascota.</p>
                     <el-form ref="form" :model="form" label-width="120px">
                         <el-form-item label="Nombre">
                             <el-input v-model="form.name"></el-input>

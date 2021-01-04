@@ -35,7 +35,7 @@ export default {
 <style lang="scss">
 .background-profile {
     padding-bottom: 50px;
-    background-image: url('../assets/img/cartu.jpg');
+    background-image: url('../assets/img/fondousuario.jpg');
     background-size: cover;
     height: 1000px;
     width: 100%;

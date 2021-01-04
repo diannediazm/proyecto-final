@@ -2,7 +2,18 @@
   <div class="background-registro text-white">
     <h1 class="title-registro text-center mb-5">¡Únete a HOKU!</h1>
     <b-container class="px-5">
-      <b-form @submit.prevent="createUser">
+      <el-upload
+        class="avatar-uploader text-center"
+        :http-request="upload"
+        action="cargaArchivo"
+        :show-file-list="false"
+        :on-success="handleAvatarSuccess"
+        :before-upload="beforeAvatarUpload"> 
+        <img v-if="imageUrl" :src="imageUrl" class="avatar">
+        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+      </el-upload>
+      <b-form @submit.prevent="createUser">  
+        <h5 class="text-center mb-4">Sube tu foto de perfil</h5>
         <b-row class="my-1">
           <b-col sm="2">
             <label for="input-default">Rut:</label>
@@ -184,6 +195,7 @@ import firebase from "firebase";
 export default {
   data() {
     return {
+      imageUrl: '',
       form: {
         rut: "",
         primerNombre: "",
@@ -201,6 +213,8 @@ export default {
         "Femenino",
         "Masculino",
       ],
+      fileList: [],
+      archivo: {}
     };
   },
   methods: {
@@ -238,7 +252,50 @@ export default {
         message: `${error.message}`,
       });
     },
-  },
+    handleAvatarSuccess(res, file) {
+      this.imageUrl = URL.createObjectURL(file.raw);
+    },
+    beforeAvatarUpload(file) {
+      const isJPG = file.type === 'image/jpeg';
+      const isLt2M = file.size / 1024 / 1024 < 2;
+
+      if (!isJPG) {
+        this.$message.error('¡La imagen debe estar en formato JPG!');
+      }
+      if (!isLt2M) {
+        this.$message.error('¡La imagen excede los 2MB!');
+      }
+      return isJPG && isLt2M;
+    },
+    upload(file){
+      console.log(file);
+      this.archivo = file.file;
+    },
+    fotoPerfil() {
+      console.log(event);
+      console.log(this.archivo);
+        if (this.archivo) {
+          let userid = this.$store.state.userSession;
+          console.log(userid);
+          let storageRef = firebase.storage().ref(userid +'/perfil/'+ this.archivo.name);
+          storageRef.put(this.archivo).then((snapshot) => {
+            console.log('funciona');
+            console.warn(snapshot.bytesTransferred / snapshot.totalBytes);
+        }).then (() => {
+          setTimeout(()=>{
+            this.subiendo = 0;
+          },1500);
+          storageRef.getDownloadURL().then((downloadURL) =>{
+            console.log('File available at', downloadURL);
+            this.form.photoURL = downloadURL;
+            this.form.userID = this.$store.state.userSession;
+            this.$store.dispatch("creandoUsuarios", this.form);
+            this.$router.push('/usuario')
+          });
+        });
+      }
+    },
+  }
 };
 </script>
 
@@ -247,11 +304,39 @@ export default {
   padding-bottom: 300px;
   background-image: url("../assets/img/pastel.jpg");
   background-size: cover;
-  height: 800px;
+  height: 900px;
   width: 100%;
   background-repeat: no-repeat;
 }
 .title-registro {
   padding-top: 50px;
 }
+.avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    background-color: #fae0df ;
+  }
+  .avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+  .el-icon-plus, .avatar-uploader-icon {
+    line-height: 160px !important;
+  }
+  
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  }
 </style>

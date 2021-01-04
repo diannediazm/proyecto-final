@@ -8,11 +8,13 @@
         action="cargaArchivo"
         :show-file-list="false"
         :on-success="handleAvatarSuccess"
-        :before-upload="beforeAvatarUpload"> 
-        <img v-if="imageUrl" :src="imageUrl" class="avatar">
+        :before-upload="beforeAvatarUpload"
+      >
+        <img v-if="form.photoPerfil" :src="form.photoPerfil" class="avatar" />
         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
       </el-upload>
-      <b-form @submit.prevent="createUser">  
+
+      <b-form @submit.prevent="createUser">
         <h5 class="text-center mb-4">Sube tu foto de perfil</h5>
         <b-row class="my-1">
           <b-col sm="2">
@@ -181,7 +183,8 @@
         </b-col>
         <b-col cols="8">
           <h6>
-            ¡La memoria es frágil! Guarda hoy los detalles de tus momentos épicos
+            ¡La memoria es frágil! Guarda hoy los detalles de tus momentos
+            épicos
           </h6>
         </b-col>
       </b-row>
@@ -191,11 +194,10 @@
 
 <script>
 import firebase from "firebase";
-
 export default {
   data() {
     return {
-      imageUrl: '',
+      imageUrl: "",
       form: {
         rut: "",
         primerNombre: "",
@@ -207,6 +209,7 @@ export default {
         email: "",
         password: "",
         userID: "",
+        photoPerfil: "",
       },
       opcion: [
         { text: "Seleccione una opción", value: null },
@@ -214,10 +217,48 @@ export default {
         "Masculino",
       ],
       fileList: [],
-      archivo: {}
+      archivo: {},
     };
   },
   methods: {
+    handleAvatarSuccess(res, file) {
+      this.imageUrl = URL.createObjectURL(file.raw);
+    },
+    beforeAvatarUpload(file) {
+      const isJPG = file.type === "image/jpeg";
+      const isLt2M = file.size / 1024 / 1024 < 2;
+
+      if (!isJPG) {
+        this.$message.error("¡La imagen debe estar en formato JPG!");
+      }
+      if (!isLt2M) {
+        this.$message.error("¡La imagen excede los 2MB!");
+      }
+      return isJPG && isLt2M;
+    },
+    upload(file) {
+      console.log(file);
+      this.archivo = file.file;
+      let storageRef = firebase
+        .storage()
+        .ref("photosPerfiles/" + this.archivo.name);
+      storageRef
+        .put(this.archivo)
+        .then((snapshot) => {
+          console.log("funciona");
+          console.warn(snapshot.bytesTransferred / snapshot.totalBytes);
+        })
+        .then(() => {
+          setTimeout(() => {
+            this.subiendo = 0;
+          }, 1500);
+          storageRef.getDownloadURL().then((downloadURL) => {
+            console.log("File available at", downloadURL);
+            this.form.photoPerfil = downloadURL;
+          });
+        });
+    },
+
     createUser() {
       if (this.form.email && this.form.password) {
         //console.log("entro");
@@ -252,50 +293,7 @@ export default {
         message: `${error.message}`,
       });
     },
-    handleAvatarSuccess(res, file) {
-      this.imageUrl = URL.createObjectURL(file.raw);
-    },
-    beforeAvatarUpload(file) {
-      const isJPG = file.type === 'image/jpeg';
-      const isLt2M = file.size / 1024 / 1024 < 2;
-
-      if (!isJPG) {
-        this.$message.error('¡La imagen debe estar en formato JPG!');
-      }
-      if (!isLt2M) {
-        this.$message.error('¡La imagen excede los 2MB!');
-      }
-      return isJPG && isLt2M;
-    },
-    upload(file){
-      console.log(file);
-      this.archivo = file.file;
-    },
-    fotoPerfil() {
-      console.log(event);
-      console.log(this.archivo);
-        if (this.archivo) {
-          let userid = this.$store.state.userSession;
-          console.log(userid);
-          let storageRef = firebase.storage().ref(userid +'/perfil/'+ this.archivo.name);
-          storageRef.put(this.archivo).then((snapshot) => {
-            console.log('funciona');
-            console.warn(snapshot.bytesTransferred / snapshot.totalBytes);
-        }).then (() => {
-          setTimeout(()=>{
-            this.subiendo = 0;
-          },1500);
-          storageRef.getDownloadURL().then((downloadURL) =>{
-            console.log('File available at', downloadURL);
-            this.form.photoURL = downloadURL;
-            this.form.userID = this.$store.state.userSession;
-            this.$store.dispatch("creandoUsuarios", this.form);
-            this.$router.push('/usuario')
-          });
-        });
-      }
-    },
-  }
+  },
 };
 </script>
 
@@ -312,31 +310,32 @@ export default {
   padding-top: 50px;
 }
 .avatar-uploader .el-upload {
-    border: 1px dashed #d9d9d9;
-    border-radius: 6px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    background-color: #fae0df ;
-  }
-  .avatar-uploader .el-upload:hover {
-    border-color: #409EFF;
-  }
-  .avatar-uploader-icon {
-    font-size: 28px;
-    color: #8c939d;
-    width: 178px;
-    height: 178px;
-    line-height: 178px;
-    text-align: center;
-  }
-  .el-icon-plus, .avatar-uploader-icon {
-    line-height: 160px !important;
-  }
-  
-  .avatar {
-    width: 178px;
-    height: 178px;
-    display: block;
-  }
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  background-color: #fae0df;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409eff;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  line-height: 178px;
+  text-align: center;
+}
+.el-icon-plus,
+.avatar-uploader-icon {
+  line-height: 160px !important;
+}
+
+.avatar {
+  width: 178px;
+  height: 178px;
+  display: block;
+}
 </style>

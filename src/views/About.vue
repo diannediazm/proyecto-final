@@ -4,6 +4,7 @@
     <div v-for="(data, index) in historia" :key="index">
       <p>Titulo: {{ historia[index].title }}</p>
       <p>Text: {{ historia[index].text }}</p>
+      <p>fecha: {{ historia[index].fechaHora }}</p>
     </div>
     <h1>videos</h1>
     <div v-for="(data, index) in video" :key="index">
@@ -13,7 +14,7 @@
       <p>videoURL: {{ video[index].videoURL }}</p>
       <b-embed
         type="iframe"
-        aspect="16by9"
+        aspect="4by3"
         :src= video[index].videoURL 
         allowfullscreen
       ></b-embed>
@@ -32,7 +33,7 @@
 
 <script>
 import { db } from "../main";
-
+//  let today = Date.now();
 export default {
   name: "About",
   data() {

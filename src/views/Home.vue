@@ -22,7 +22,7 @@ export default {
   background-image: url('../assets/img/woman.jpg');
   background-size: cover;
   height: 800px;
-  width: 100%;
+  max-width: 100%;
   background-repeat: no-repeat;
 }
 </style>

@@ -16,22 +16,7 @@
 
       <b-form @submit.prevent="createUser">
         <h5 class="text-center mb-4">Sube tu foto de perfil</h5>
-        <b-row class="my-1">
-          <b-col sm="2">
-            <label for="input-default">Rut:</label>
-          </b-col>
-          <b-col sm="4">
-            <b-form-input
-              id="rut"
-              placeholder="Ingresa su RUT"
-              v-model="form.rut"
-              required
-              type="text"
-            ></b-form-input>
-          </b-col>
-        </b-row>
-
-        <b-row class="my-1">
+          <b-row class="my-1">
           <b-col sm="2">
             <label for="input-default">Primer Nombre:</label>
           </b-col>

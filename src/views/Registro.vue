@@ -2,17 +2,17 @@
   <div class="background-registro text-white">
     <h1 class="title-registro text-center mb-5">¡Únete a HOKU!</h1>
     <b-container class="px-5">
+      <el-upload
+        class="avatar-uploader text-center"
+        :http-request="upload"
+        action="cargaArchivo"
+        :show-file-list="false"
+        :on-success="handleAvatarSuccess"
+        :before-upload="beforeAvatarUpload"> 
+        <img v-if="imageUrl" :src="imageUrl" class="avatar">
+        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+      </el-upload>
       <b-form @submit.prevent="createUser">  
-        <el-upload
-          class="avatar-uploader text-center"
-          :http-request="upload"
-          action="cargaArchivo"
-          :show-file-list="false"
-          :on-success="handleAvatarSuccess"
-          :before-upload="beforeAvatarUpload">
-          <img v-if="imageUrl" :src="imageUrl" class="avatar">
-          <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-        </el-upload>
         <h5 class="text-center mb-4">Sube tu foto de perfil</h5>
         <b-row class="my-1">
           <b-col sm="2">
@@ -246,30 +246,6 @@ export default {
         console.log("No se puede conectar");
       }
     },
-    fotoPerfil() {
-      console.log(event);
-      console.log(this.archivo);
-        if (this.archivo) {
-          let userid = this.$store.state.userSession;
-          console.log(userid);
-          let storageRef = firebase.storage().ref(userid +'/perfil/'+ this.archivo.name);
-          storageRef.put(this.archivo).then((snapshot) => {
-            console.log('funciona');
-            console.warn(snapshot.bytesTransferred / snapshot.totalBytes);
-        }).then (() => {
-          setTimeout(()=>{
-            this.subiendo = 0;
-          },1500);
-          storageRef.getDownloadURL().then((downloadURL) =>{
-            console.log('File available at', downloadURL);
-            this.form.photoURL = downloadURL;
-            this.form.userID = this.$store.state.userSession;
-            this.$store.dispatch("creandoUsuarios", this.form);
-            this.$router.push('/usuario')
-          });
-        });
-      }
-    },
     errores(error) {
       this.$notify.error({
         title: "Error",
@@ -294,6 +270,30 @@ export default {
     upload(file){
       console.log(file);
       this.archivo = file.file;
+    },
+    fotoPerfil() {
+      console.log(event);
+      console.log(this.archivo);
+        if (this.archivo) {
+          let userid = this.$store.state.userSession;
+          console.log(userid);
+          let storageRef = firebase.storage().ref(userid +'/perfil/'+ this.archivo.name);
+          storageRef.put(this.archivo).then((snapshot) => {
+            console.log('funciona');
+            console.warn(snapshot.bytesTransferred / snapshot.totalBytes);
+        }).then (() => {
+          setTimeout(()=>{
+            this.subiendo = 0;
+          },1500);
+          storageRef.getDownloadURL().then((downloadURL) =>{
+            console.log('File available at', downloadURL);
+            this.form.photoURL = downloadURL;
+            this.form.userID = this.$store.state.userSession;
+            this.$store.dispatch("creandoUsuarios", this.form);
+            this.$router.push('/usuario')
+          });
+        });
+      }
     },
   }
 };

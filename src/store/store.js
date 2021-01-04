@@ -44,6 +44,7 @@ export default new Vuex.Store({
                          fechaNacimiento: data.fechaNacimiento,
                          email: data.email,
                          userID: data.userID,
+                         imageUrl: data.imageUrl,
                     });
 
                     this.userSession = data.userID;

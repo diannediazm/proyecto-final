@@ -10,9 +10,11 @@
         <b-navbar-nav class="ml-auto">
           <b-nav-item v-if="!uid" href="/#login">Iniciar Sesión</b-nav-item>
           <b-nav-item v-if="!uid" :to="{ name: 'Registro' }">Crear Cuenta</b-nav-item>
-          <b-nav-item v-if="uid" :to="{name: 'Fotos'}">Fotos</b-nav-item>
-          <b-nav-item v-if="uid" :to="{name: 'Historias'}">Historias</b-nav-item>
-          <b-nav-item v-if="uid" :to="{name: 'About'}">About</b-nav-item>
+          <b-nav-item v-if="uid" :to="{name: 'Usuario'}"><b-icon icon="house-door"></b-icon> Inicio</b-nav-item>
+          <b-nav-item v-if="uid" :to="{name: 'Historias'}"><b-icon icon="plus-circle"></b-icon> Historias</b-nav-item>
+          <b-nav-item v-if="uid" :to="{name: 'Fotos'}"><b-icon icon="plus-circle"></b-icon> Fotos</b-nav-item>
+          <b-nav-item v-if="uid" :to="{name: 'Videos'}"><b-icon icon="plus-circle"></b-icon> Videos</b-nav-item>
+          <!-- <b-nav-item v-if="uid" :to="{name: 'About'}">About</b-nav-item> -->
           <b-nav-item v-if="uid" href="#" @click="salir">Salir</b-nav-item>
         </b-navbar-nav>
       </b-collapse>

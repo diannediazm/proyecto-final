@@ -25,7 +25,7 @@
                         </el-form-item>
                     </el-form>    
                 </b-col>
-                <b-col class="my-5">
+                <b-col class="my-5 text-center">
                     <el-form ref="form" :model="form" label-width="120px">
                         <el-form-item>
                             <el-upload
@@ -43,8 +43,8 @@
                             </el-upload>
                         </el-form-item>
                         <el-form-item>
-                            <el-button type="light" @click.prevent.stop="onSubmit">Crear</el-button>
-                            <el-button>Cancelar</el-button>
+                            <el-button type="light" round @click="onSubmit" >Subir</el-button>
+                            <el-button type="danger" round @click="volver">Volver</el-button>
                         </el-form-item> 
                     </el-form>     
                 </b-col>
@@ -127,6 +127,9 @@ export default {
             });
           }
       },
+      volver() {
+          this.$router.push('/usuario')
+      }
     }
           
 }

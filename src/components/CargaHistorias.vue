@@ -1,10 +1,10 @@
 <template>
-    <div class="background-historias">
-        <div class="text-videos text-center text-white">
+    <div class="py-5 background-historias">
+        <b-container class="formulario">
+          <div class="text-videos text-center text-white">
             <h1>Cuántas historias que contar</h1>
             <p>Con el tiempo vamos olvidando los detalles de nuestros momentos memorables, ¡Escríbelos ahora!</p>
         </div>
-        <b-container class="formulario">
             <el-form ref="form" :model="form" label-width="120px">
             <el-form-item label="Título">
                 <el-input v-model="form.title"></el-input>
@@ -17,8 +17,8 @@
             max-rows="6"
             ></b-form-textarea>
             <el-form-item class="my-5 text-center">
-                <el-button type="light" @click.prevent="cargarHistoria">Guardar</el-button>
-                <el-button>Cancelar</el-button>
+                <el-button type="light" round @click.prevent="cargarHistoria">Subir</el-button>
+                <el-button type="danger" round>Volver</el-button>
             </el-form-item>
             </el-form>
         </b-container>
@@ -82,7 +82,7 @@ export default {
     padding-bottom: 300px;
     background-image: url('../assets/img/abuelos.jpg');
     background-size: cover;
-    height: 800px;
+    height: 700px;
     width: 100%;
     background-repeat: no-repeat;
 }

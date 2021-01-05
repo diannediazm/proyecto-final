@@ -7,6 +7,7 @@ import Fotos from "../views/Fotos.vue";
 import Videos from "../views/Videos.vue";
 import Historias from "../views/Historias.vue";
 import Usuario from "../views/Usuario.vue";
+import EditRegistro from "../views/EditRegistro.vue";
 import firebase from "firebase";
 
 Vue.use(VueRouter);
@@ -46,6 +47,11 @@ const routes = [
           path: "/about",
           name: "About",
           component: About,
+     },
+     {
+          path: "/editRegistro",
+          name: "EditRegistro",
+          component: EditRegistro,
      },
 ];
 

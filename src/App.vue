@@ -55,7 +55,7 @@
                                         alt="Circle image"
                                    ></b-img>
                               </template>
-                              <b-dropdown-item href="#"
+                              <b-dropdown-item :to="{name: 'EditRegistro'}"
                                    ><b-icon icon="pencil-square"></b-icon>
                                    Editar Perfil</b-dropdown-item
                               >

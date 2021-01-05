@@ -154,7 +154,7 @@ export default {
         color: white !important;
     }
     .formulario {
-        background-color: rgba(33, 33, 33, 0.4);
+        background-color: rgba(33, 33, 33, 0.6);
         padding: 50px;
         border-radius: 50px;
     }

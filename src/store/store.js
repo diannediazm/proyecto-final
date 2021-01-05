@@ -70,6 +70,7 @@ export default new Vuex.Store({
                     desc: data.desc,
                     photoURL: data.photoURL,
                     userID: data.userID,
+                    pais: data.pais,
                     fechaHora: timeSave,
                });
           },
@@ -82,6 +83,7 @@ export default new Vuex.Store({
                     desc: data.desc,
                     videoURL: data.videoURL,
                     userID: data.userID,
+                    pais: data.pais,
                     fechaHora: timeSave,
                });
           },

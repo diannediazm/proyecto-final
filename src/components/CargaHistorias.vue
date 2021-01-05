@@ -68,6 +68,9 @@ export default {
         }
 
         console.log('submit!');
+      },
+      volver() {
+          this.$router.push('/usuario')
       }
     },
     
@@ -77,9 +80,6 @@ export default {
         console.log("historias: " + this.$store.state.userSession);
       },1000)
     },
-    volver() {
-          this.$router.push('/usuario')
-      }
 }
 </script>
 

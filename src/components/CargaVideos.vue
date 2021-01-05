@@ -42,6 +42,14 @@
                             <div slot="tip" class="el-upload__tip text-white">Solo archivos jpg/png con un tamaño menor de 500kb</div>
                             </el-upload>
                         </el-form-item>
+                         <el-select v-model="form.pais" v-if="country" placeholder="Select">
+                            <el-option
+                            v-for="item in country"
+                            :key="item"
+                            :label="item"
+                            :value="item">
+                            </el-option>
+                        </el-select>
                         <el-form-item>
                             <el-button type="light" round @click="onSubmit" >Subir</el-button>
                             <el-button type="danger" round @click="volver">Volver</el-button>
@@ -55,16 +63,19 @@
 
 <script>
 import firebase from 'firebase';
+import axios from 'axios';
 export default {
     name: 'CargaVideos',
     data() {
       return {
+          country:[],
         form: {
           name: '',
           date1: '',
           desc: '',
           videoURL: '',
-          userID: ''
+          userID: '',
+          pais:'',
         },
         rules: [
             value => !value || value.size < 100000000 || 'El tamaño del video debe ser inferior a 1GB'
@@ -119,7 +130,17 @@ export default {
     },
     volver() {
         this.$router.push('/usuario')
-    }
+    },
+    async cargarPaises(){
+            let api = 'https://restcountries.eu/rest/v2/all';
+            let respuesta = await axios.get(api);
+            respuesta.data.forEach(element => {
+                this.country.push(element.name)   
+            });
+        }
+    },
+    mounted() {
+        this.cargarPaises(); 
     }
 }
 </script>

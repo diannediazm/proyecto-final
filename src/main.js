@@ -15,8 +15,10 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import VueLodash from 'vue-lodash';
 import lodash from 'lodash';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 
-Vue.use(VueLodash, { lodash: lodash })
+
 
 firebase.initializeApp(firebaseConfig);
 
@@ -24,6 +26,8 @@ Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(ElementUI, { locale })
 Vue.component('font-awesome-icon', FontAwesomeIcon);
+Vue.use(VueLodash, { lodash: lodash })
+Vue.use(VueAxios, axios)
 library.add(faUserSecret);
 
 export const db = firebase.firestore();

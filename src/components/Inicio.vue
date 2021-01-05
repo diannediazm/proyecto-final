@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <div class="title container text-center text-white">
+  <div class="background-home">
+    <header class="title-home container text-center text-white">
       <h1>¿Quieres revivir tus recuerdos con la misma intensidad en cualquier momento de tu vida?</h1>
       <b-button pill variant="light" :to="{ name: 'Registro' }">¡Crea tu cuenta!</b-button>
-    </div>
+    </header>
     <div id="login" class="background-inicio">
       <b-container class="bv-example-row">
         <b-row>
-          <b-col class="texto mr-4">
+          <b-col class="texto-home mr-4">
           <div class="mt-3">
             <b-card-group deck>
               <b-card bg-variant="info" header="HOKU: Diario de vida digital y heredable" class="text-center text-white">
@@ -20,7 +20,7 @@
           </div>
           </b-col>
           <b-col>
-            <b-form @submit.prevent="login" class="form">
+            <b-form @submit.prevent="login" class="form-home">
                 <h4>Inicia sesión</h4>
               <b-form-group
                   id="input-group-1"
@@ -53,7 +53,7 @@
         </b-row>
       </b-container>  
 
-      <b-container class="cards">
+      <b-container class="cards-home">
       <b-card-group deck >
       <b-card title="Fotografías">
         <img src="../assets/img/camarawoman.jpg" alt="image" img-top width="100%">
@@ -161,49 +161,12 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
-.title {
-  padding-top: 300px;
-}
-.bv-example-row {
-  margin-top: 300px;
-  padding-top: 100px;
-  padding-bottom: 100px;
-  color: #393e46;
-}
-
-.form {
-  padding-top:30px;
-  width: 100%;
-}
-.texto{
-  padding-left: 100px;
-}
-.background-inicio {
-  background-color: #f6f5f1;
-}
-.cards {
-  padding-bottom: 100px;
-}
-.casos {
-  background-color: #fae0df;
-  padding: 20px;
-  border-radius: 50px;
-}
-.avatar {
-  width:130px;
-  height:130px;
-  border-radius:100px;
-  margin-left: 150px;
-}
-.casos-text {
-  font-size: 17px;
-  font-weight: 400;
-}
-.casos-linea {
-      align-items: center;
-}
-.text-footer {
-  padding: 20px 0px 20px 0px;
-}
+<style lang="scss">
+.background-home {
+    background-image: url('../assets/img/woman.jpg');
+    background-size: cover;
+    height: 800px;
+    max-width: 100%;
+    background-repeat: no-repeat;
+  }
 </style>

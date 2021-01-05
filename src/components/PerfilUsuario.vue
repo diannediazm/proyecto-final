@@ -1,26 +1,19 @@
 <template>
      <div class="py-5 background-profile text-center text-white">
-          <b-container class="formulario">
+          <b-container class="formulario text-center">
                <h1 class="mb-5">¡Hola  !</h1>
                <b-row>
-                    <b-col>
+                    <b-col class="my-3">
                          <h5>Últimas fotos</h5>
-                         <b-img src="https://picsum.photos/1024/400/?image=41" fluid alt="Responsive image"></b-img>
+                         <div class="box py-5"></div>
                     </b-col>
-                    <b-col>
+                    <b-col class="my-3">
                          <h5>Últimos videos</h5>
-                         <b-embed
-                         type="iframe"
-                         aspect="16by9"
-                         src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
-                         allowfullscreen
-                         ></b-embed>
+                         <div class="box py-5"></div>
                     </b-col>
-                    <b-col>
+                    <b-col class="my-3">
                          <h5>Últimas historias</h5>
-                         <b-card bg-variant="light" header="Light" class="text-center text-dark">
-                         <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-                         </b-card>
+                         <div class="box py-5"></div>
                     </b-col>
                </b-row>
           </b-container>
@@ -49,6 +42,11 @@ export default {
     height: 1000px;
     width: 100%;
     background-repeat: no-repeat;
+}
+.box {
+     background-color: darkmagenta;
+     width: 90%;
+     height: 90%;
 }
      
 </style>

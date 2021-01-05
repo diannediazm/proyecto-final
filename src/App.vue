@@ -44,11 +44,12 @@
                          <!-- <b-nav-item v-if="uid" :to="{name: 'About'}">About</b-nav-item> -->
                          <b-nav-item-dropdown v-if="uid" class="my-auto" right>
                               <template #button-content>
-                                   <span class="my-auto">
+                                   <span class="my-auto" v-if="usuario[0]">
                                      Hola {{ usuario[0].primerNombre }}
                                    </span>
                                    <b-img
                                         v-bind="mainProps"
+                                        v-if="usuario[0]"
                                         :src="usuario[0].photoPerfil"
                                         rounded="circle"
                                         alt="Circle image"
@@ -107,9 +108,9 @@ export default {
           firebase.auth().onAuthStateChanged((user) => {
                if (user) {
                     //console.log(user.displayName);
-                    setTimeout(() => {
-                         this.uid = user.uid;
-                         this.$store.dispatch("updateUserSessionAct", user.uid);
+                    this.uid = user.uid;
+                    this.$store.dispatch("updateUserSessionAct", user.uid);
+                    setTimeout(() => {  
                          db.collection("usuarios")
                               .where("userID", "==", user.uid)
                               .get()
@@ -135,6 +136,10 @@ export default {
                }
           });
      },
+
+     beforeMount(){
+
+     }
 };
 </script>
 

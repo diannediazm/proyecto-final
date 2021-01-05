@@ -13,6 +13,10 @@ import locale from 'element-ui/lib/locale/lang/es';
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import VueLodash from 'vue-lodash';
+import lodash from 'lodash';
+
+Vue.use(VueLodash, { lodash: lodash })
 
 firebase.initializeApp(firebaseConfig);
 

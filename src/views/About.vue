@@ -1,10 +1,10 @@
 <template>
   <div class="about">
     <h1>historias</h1>
-    <div v-for="(data, index) in historia" :key="index">
-      <p>Titulo: {{ historia[index].title }}</p>
-      <p>Text: {{ historia[index].text }}</p>
-      <p>fecha: {{ historia[index].fechaHora }}</p>
+    <div v-for="(data, index) in listHistorias" :key="index">
+      <p>Titulo: {{ listHistorias[index].title }}</p>
+      <p>Text: {{ listHistorias[index].text }}</p>
+      <p>fecha: {{ Intl.DateTimeFormat('es-CL').format(listHistorias[index].fechaHora.toDate()) }}</p>
     </div>
     <h1>videos</h1>
     <div v-for="(data, index) in video" :key="index">
@@ -33,6 +33,7 @@
 
 <script>
 import { db } from "../main";
+import _ from 'lodash';
 //  let today = Date.now();
 export default {
   name: "About",
@@ -43,46 +44,53 @@ export default {
       foto:[],
     };
   },
-
-  beforeCreate: function () {
-    db.collection("videos")
-      .where("userID", "==", this.$store.state.userSession)
-      .get()
-      .then((snapshot) => {
-        if (snapshot.empty) {
-          console.log("No matching documents.");
-          return;
-        }
-        snapshot.forEach((doc) => {
-          this.video.push(doc.data());
-        });
-      })
-      .catch((err) => {
-        console.log("Error getting documents", err);
-      });
+  computed:{
+    listHistorias(){
+      return _.orderBy(this.historia, 'fechaHora', 'desc'); 
+    }
   },
 
-  mounted(){
-      db.collection("fotos")
-      .where("userID", "==", this.$store.state.userSession)
-      .get()
-      .then((snapshot) => {
-        if (snapshot.empty) {
-          console.log("No matching documents.");
-          return;
-        }
-        snapshot.forEach((doc) => {
-          this.foto.push(doc.data());
-        });
-      })
-      .catch((err) => {
-        console.log("Error getting documents", err);
-      });
-  },
-  created() {
-    db.collection("historias")
-      .where("idUser", "==", this.$store.state.userSession)
-      .get()
+  // beforeCreate: function () {
+  //   db.collection("videos")
+  //     .where("userID", "==", this.$store.state.userSession)
+  //     .get()
+  //     .then((snapshot) => {
+  //       if (snapshot.empty) {
+  //         console.log("No matching documents.");
+  //         return;
+  //       }
+  //       snapshot.forEach((doc) => {
+  //         this.video.push(doc.data());
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log("Error getting documents", err);
+  //     });
+  // },
+
+  // mounted(){
+  //     db.collection("fotos")
+  //     .where("userID", "==", this.$store.state.userSession)
+  //     .get()
+  //     .then((snapshot) => {
+  //       if (snapshot.empty) {
+  //         console.log("No matching documents.");
+  //         return;
+  //       }
+  //       snapshot.forEach((doc) => {
+  //         this.foto.push(doc.data());
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log("Error getting documents", err);
+  //     });
+  // },
+  mounted() {
+    setTimeout(() =>{
+
+        let variable = db.collection("historias").where("idUser", "==", this.$store.state.userSession);
+      //variable = variable.orderBy('fechaHora');
+      variable.get()
       .then((snapshot) => {
         if (snapshot.empty) {
           console.log("No matching documents.");
@@ -95,6 +103,8 @@ export default {
       .catch((err) => {
         console.log("Error getting documents", err);
       });
+
+    },2000)
   },
 };
 </script>

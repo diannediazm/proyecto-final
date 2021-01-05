@@ -1,26 +1,30 @@
 <template>
     <div class="py-5 background-historias">
         <b-container class="formulario">
-          <div class="text-videos text-center text-white">
-            <h1>Cuántas historias que contar</h1>
-            <p>Con el tiempo vamos olvidando los detalles de nuestros momentos memorables, ¡Escríbelos ahora!</p>
-        </div>
-            <el-form ref="form" :model="form" label-width="120px">
-            <el-form-item label="Título">
-                <el-input v-model="form.title"></el-input>
-            </el-form-item>
-            <b-form-textarea
-            id="textarea"
-            v-model="form.text"
-            placeholder="Empieza a escribir..."
-            rows="3"
-            max-rows="6"
-            ></b-form-textarea>
-            <el-form-item class="my-5 text-center">
-                <el-button type="light" round @click.prevent="cargarHistoria">Subir</el-button>
-                <el-button type="danger" round>Volver</el-button>
-            </el-form-item>
-            </el-form>
+          <b-row>
+            <b-col class="text-center text-white">
+              <div>
+                <h1>Cuántas historias que contar</h1>
+                <p>Con el tiempo vamos olvidando los detalles de nuestros momentos memorables, ¡Escríbelos ahora!</p>
+              </div>
+                <el-form ref="form" :model="form" label-width="120px">
+                <el-form-item label="Título">
+                    <el-input v-model="form.title"></el-input>
+                </el-form-item>
+                <b-form-textarea
+                id="textarea"
+                v-model="form.text"
+                placeholder="Empieza a escribir..."
+                rows="3"
+                max-rows="6"
+                ></b-form-textarea>
+                <el-form-item class="my-5 text-right">
+                    <el-button type="light" round @click.prevent="cargarHistoria">Subir</el-button>
+                    <el-button type="danger" round @click="volver">Volver</el-button>
+                </el-form-item>
+                </el-form>
+            </b-col>
+          </b-row>  
         </b-container>
     </div>
 </template>
@@ -72,8 +76,10 @@ export default {
       setTimeout(() => {
         console.log("historias: " + this.$store.state.userSession);
       },1000)
-      
-    }
+    },
+    volver() {
+          this.$router.push('/usuario')
+      }
 }
 </script>
 

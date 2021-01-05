@@ -118,8 +118,8 @@ export default {
         }  
     },
     volver() {
-          this.$router.push('/usuario')
-      }
+        this.$router.push('/usuario')
+    }
     }
 }
 </script>

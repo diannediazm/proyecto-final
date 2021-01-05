@@ -91,7 +91,7 @@
       </b-row>
     </b-container>
     <b-container class="casos my-5">
-      <b-row>
+      <b-row class="casos-linea">
         <b-col>
           <img src="../assets/img/abuelo.jpg" alt="" class="avatar" rounded="circle">
         </b-col>
@@ -104,7 +104,7 @@
        </b-container>
     </div>
     <footer class="bg-dark text-white">
-      <h2 class="text-footer text-center">HOKU</h2>
+      <h2 class="text-footer text-center font-weight-bold">HOKU</h2>
     </footer>
   </div>
 </template>
@@ -199,6 +199,9 @@ export default {
 .casos-text {
   font-size: 17px;
   font-weight: 400;
+}
+.casos-linea {
+      align-items: center;
 }
 .text-footer {
   padding: 20px 0px 20px 0px;

@@ -5,8 +5,8 @@
                 <h1>¡Sube tus fotografías!</h1>
                 <p>No dejes que tus fotos más importantes se pierdan en dispositivos. Selecciónalas y guárdalas según fecha, significado o historia memorable.</p>
             </div>
-            <b-row>
-                <b-col class="text-center text-white formulario">
+            <b-row class="formulario">
+                <b-col class="text-center text-white">
                     <h3>Diseña tu galería</h3>
                     <p class="text-left">Elige un nombre que identifique a las fotografías: un día especial, una persona o tu mascota.</p>
                     <el-form ref="form" :model="form" label-width="120px">
@@ -23,6 +23,10 @@
                         <el-form-item label="Descripción">
                             <el-input type="textarea" v-model="form.desc"></el-input>
                         </el-form-item>
+                    </el-form>    
+                </b-col>
+                <b-col class="my-5">
+                    <el-form ref="form" :model="form" label-width="120px">
                         <el-form-item>
                             <el-upload
                             class="upload-demo"
@@ -35,15 +39,14 @@
                             multiple>
                             <i class="el-icon-upload"></i>
                             <div class="el-upload__text">Suelta tu archivo aquí o <em>haz clic para cargar</em></div>
-                            <div slot="tip" class="el-upload__tip">Solo archivos jpg/png con un tamaño menor de 500kb</div>
+                            <div slot="tip" class="el-upload__tip text-white">Solo archivos jpg/png con un tamaño menor de 500kb</div>
                             </el-upload>
-                            <el-progress :text-inside="true" :stroke-width="26" :percentage="0"></el-progress>
                         </el-form-item>
                         <el-form-item>
                             <el-button type="light" @click.prevent.stop="onSubmit">Crear</el-button>
                             <el-button>Cancelar</el-button>
-                        </el-form-item>
-                    </el-form>
+                        </el-form-item> 
+                    </el-form>     
                 </b-col>
             </b-row>
             
@@ -124,9 +127,6 @@ export default {
             });
           }
       },
-      format(percentage) {
-        return percentage === 100 ? 'Full' : `${percentage}%`;
-      }
     }
           
 }
@@ -139,7 +139,7 @@ export default {
     .background-fotos {
         background-image: url('../assets/img/cargafotos.jpg');
         background-size: cover;
-        height: 1000px;
+        height: 800px;
         width: 100%;
         background-repeat: no-repeat;
     }

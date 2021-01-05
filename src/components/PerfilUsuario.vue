@@ -3,15 +3,15 @@
           <b-container class="formulario text-center">
                <h1 class="mb-5">¡Hola  !</h1>
                <b-row>
-                    <b-col class="my-3">
+                    <b-col xl="4" lg="4" md="4" xs="12" class="my-3">
                          <h5>Últimas fotos</h5>
                          <div class="box py-5"></div>
                     </b-col>
-                    <b-col class="my-3">
+                    <b-col xl="4" lg="4" md="4" xs="12" class="my-3">
                          <h5>Últimos videos</h5>
                          <div class="box py-5"></div>
                     </b-col>
-                    <b-col class="my-3">
+                    <b-col xl="4" lg="4" md="4" xs="12" class="my-3">
                          <h5>Últimas historias</h5>
                          <div class="box py-5"></div>
                     </b-col>
@@ -43,10 +43,6 @@ export default {
     width: 100%;
     background-repeat: no-repeat;
 }
-.box {
-     background-color: darkmagenta;
-     width: 90%;
-     height: 90%;
-}
+
      
 </style>

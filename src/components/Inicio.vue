@@ -7,7 +7,7 @@
     <div id="login" class="background-inicio">
       <b-container class="bv-example-row">
         <b-row>
-          <b-col class="texto-home mr-4">
+          <b-col xl="6" lg="6" md="6" xs="12" class="texto-home">
           <div class="mt-3">
             <b-card-group deck>
               <b-card bg-variant="info" header="HOKU: Diario de vida digital y heredable" class="text-center text-white">
@@ -19,7 +19,7 @@
             </b-card-group>
           </div>
           </b-col>
-          <b-col>
+          <b-col xl="6" lg="6" md="6" xs="12">
             <b-form @submit.prevent="login" class="form-home">
                 <h4>Inicia sesión</h4>
               <b-form-group
@@ -81,21 +81,21 @@
     </b-card-group>
     <b-container class="casos my-5">
       <b-row>
-        <b-col>
-          <img src="../assets/img/pareja.jpg" alt="" class="avatar" rounded="circle">
+        <b-col xl="6" lg="6" md="6" xs="12">
+          <img src="../assets/img/pareja.jpg" alt="" class="avatar my-4" rounded="circle">
         </b-col>
-        <b-col>
+        <b-col xl="6" lg="6" md="6" xs="12">
           <h5 class="casos-text">"Mi marido falleció repentinamente. Fue un dolor tremendo. Luego de pasar el schock empecé a re ordenar la vida y recordé la cuenta de criptomonedas donde él había estado invirtiendo para el futuro familiar. Me comuniqué con ellos, pero no pudieron darme acceso. Solo logré entrar gracias a que Jorge me heredó su información en HOKU."</h5>  
           <p>Carolina, 30 años.</p>
         </b-col>
       </b-row>
     </b-container>
-    <b-container class="casos my-5">
+    <b-container class="casos">
       <b-row class="casos-linea">
-        <b-col>
-          <img src="../assets/img/abuelo.jpg" alt="" class="avatar" rounded="circle">
+        <b-col xl="6" lg="6" md="6" xs="12">
+          <img src="../assets/img/abuelo.jpg" alt="" class="avatar my-4" rounded="circle">
         </b-col>
-        <b-col>
+        <b-col xl="6" lg="6" md="6" xs="12">
           <h5 class="casos-text">"Me detectaron Alzheimer y antes de que se me empiecen a olvidar las cosas, quiero dejar un legado para mis nietas. Aún están muy pequeñas, pero podré heredarles mis historias para cuando sean mayores. Hoku es fácil de usar y será mi respaldo de memoria para cuando mi mente se vaya"</h5>
           <p>Fernando, 75 años.</p>  
         </b-col>

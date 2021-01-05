@@ -2,7 +2,7 @@
      <div class="background-videos text-white">
           <div class="text-videos text-center">
                <h1>¿Cuáles son los videos que miras una y otra vez?</h1>
-               <p>
+               <p class="bajada-title">
                     Estamos subiendo videos a redes sociales, recibiendo desde
                     chats familiares, pero ¿tienes a mano los realmente
                     importantes?
@@ -227,7 +227,5 @@ export default {
      width: 100%;
      background-repeat: no-repeat;
 }
-.text-videos {
-     padding-top: 50px;
-}
+
 </style>

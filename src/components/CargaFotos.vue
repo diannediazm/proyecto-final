@@ -3,14 +3,14 @@
           <b-container>
                <div class="title-fotos text-center mb-5 text-white">
                     <h1>¡Sube tus fotografías!</h1>
-                    <p>
+                    <p class="bajada-title">
                          No dejes que tus fotos más importantes se pierdan en
                          dispositivos. Selecciónalas y guárdalas según fecha,
                          significado o historia memorable.
                     </p>
                </div>
                <b-row class="formulario">
-                    <b-col class="text-center text-white">
+                    <b-col xl="6" lg="6" md="6" xs="12" class="text-center text-white">
                          <h3>Diseña tu galería</h3>
                          <p class="text-left">
                               Elige un nombre que identifique a las fotografías:
@@ -35,7 +35,6 @@
                               </el-form-item>
                               <p class="text-left">
                                    ¿Dónde sacaste las fotos?
-                              
                               <el-select
                                    v-model="form.pais"
                                    v-if="country"
@@ -66,7 +65,7 @@
                               </el-form-item>
                          </el-form>
                     </b-col>
-                    <b-col class="carga my-5 text-center">
+                    <b-col xl="6" lg="6" md="6" xs="12" class="carga my-5 text-center">
                          <el-form ref="form" :model="form" label-width="120px">
                               <el-form-item>
                                    <el-upload
@@ -250,9 +249,6 @@ export default {
 </script>
 
 <style lang="scss">
-.title-fotos {
-     padding-top: 50px;
-}
 .background-fotos {
      background-image: url("../assets/img/cargafotos.jpg");
      background-size: cover;
@@ -260,22 +256,5 @@ export default {
      width: 100%;
      background-repeat: no-repeat;
 }
-.foto {
-     width: 40%;
-     border-radius: 50px;
-}
-.share {
-     justify-content: center;
-}
-.el-form-item__label {
-     color: white !important;
-}
-.formulario {
-     background-color: rgba(33, 33, 33, 0.6);
-     padding: 50px;
-     border-radius: 50px;
-}
-.carga {
-     align-self: flex-end;
-}
+
 </style>

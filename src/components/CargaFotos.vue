@@ -34,6 +34,27 @@
                                    </el-col>
                               </el-form-item>
                               <p class="text-left">
+                                   ¿Dónde sacaste las fotos?
+                              
+                              <el-select
+                                   v-model="form.pais"
+                                   v-if="country"
+                                   filterable
+                                   remote
+                                   reserve-keyword
+                                   placeholder="Ingresa el país"
+                                   :loading="loading"
+                              >
+                                   <el-option
+                                        v-for="item in country"
+                                        :key="item"
+                                        :label="item"
+                                        :value="item"
+                                   >
+                                   </el-option>
+                              </el-select>
+                              </p>
+                              <p class="text-left">
                                    Escribe alguna anécdota, historia o incluso
                                    algún secreto relacionado.
                               </p>
@@ -45,7 +66,7 @@
                               </el-form-item>
                          </el-form>
                     </b-col>
-                    <b-col class="my-5 text-center">
+                    <b-col class="carga my-5 text-center">
                          <el-form ref="form" :model="form" label-width="120px">
                               <el-form-item>
                                    <el-upload
@@ -72,23 +93,6 @@
                                         </div>
                                    </el-upload>
                               </el-form-item>
-                              <el-select
-                                   v-model="form.pais"
-                                   v-if="country"
-                                   filterable
-                                   remote
-                                   reserve-keyword
-                                   placeholder="Ingresa el país"
-                                   :loading="loading"
-                              >
-                                   <el-option
-                                        v-for="item in country"
-                                        :key="item"
-                                        :label="item"
-                                        :value="item"
-                                   >
-                                   </el-option>
-                              </el-select>
                               <el-form-item>
                                    <el-button
                                         type="light"
@@ -270,5 +274,8 @@ export default {
      background-color: rgba(33, 33, 33, 0.6);
      padding: 50px;
      border-radius: 50px;
+}
+.carga {
+     align-self: flex-end;
 }
 </style>

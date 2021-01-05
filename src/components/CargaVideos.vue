@@ -31,6 +31,25 @@
                                         ></el-date-picker>
                                    </el-col>
                               </el-form-item>
+                              <p class="text-left">¿Lugar del video?
+                              <el-select
+                                   v-model="form.pais"
+                                   v-if="country"
+                                   filterable
+                                   remote
+                                   reserve-keyword
+                                   placeholder="Ingresa el país"
+                                   :loading="loading"
+                              >
+                                   <el-option
+                                        v-for="item in country"
+                                        :key="item"
+                                        :label="item"
+                                        :value="item"
+                                   >
+                                   </el-option>
+                              </el-select>
+                              </p>
                               <p class="text-left">
                                    Escribe alguna anécdota, historia o incluso
                                    algún secreto relacionado.
@@ -43,7 +62,7 @@
                               </el-form-item>
                          </el-form>
                     </b-col>
-                    <b-col class="my-5 text-center">
+                    <b-col class="carga my-5 text-center">
                          <el-form ref="form" :model="form" label-width="120px">
                               <el-form-item>
                                    <el-upload
@@ -70,23 +89,6 @@
                                         </div>
                                    </el-upload>
                               </el-form-item>
-                              <el-select
-                                   v-model="form.pais"
-                                   v-if="country"
-                                   filterable
-                                   remote
-                                   reserve-keyword
-                                   placeholder="Ingresa el país"
-                                   :loading="loading"
-                              >
-                                   <el-option
-                                        v-for="item in country"
-                                        :key="item"
-                                        :label="item"
-                                        :value="item"
-                                   >
-                                   </el-option>
-                              </el-select>
                               <el-form-item>
                                    <el-button
                                         type="light"

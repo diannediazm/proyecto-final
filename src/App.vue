@@ -23,13 +23,6 @@
                          <b-nav-item
                               class="my-auto"
                               v-if="uid"
-                              :to="{ name: 'Historias' }"
-                              ><b-icon icon="plus-circle"></b-icon>
-                              Historias</b-nav-item
-                         >
-                         <b-nav-item
-                              class="my-auto"
-                              v-if="uid"
                               :to="{ name: 'Fotos' }"
                               ><b-icon icon="plus-circle"></b-icon>
                               Fotos</b-nav-item
@@ -40,6 +33,13 @@
                               :to="{ name: 'Videos' }"
                               ><b-icon icon="plus-circle"></b-icon>
                               Videos</b-nav-item
+                         >
+                         <b-nav-item
+                              class="my-auto"
+                              v-if="uid"
+                              :to="{ name: 'Historias' }"
+                              ><b-icon icon="plus-circle"></b-icon>
+                              Historias</b-nav-item
                          >
                          <!-- <b-nav-item v-if="uid" :to="{name: 'About'}">About</b-nav-item> -->
                          <b-nav-item-dropdown v-if="uid" class="my-auto" right>

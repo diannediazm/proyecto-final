@@ -1,6 +1,6 @@
 <template>
   <div class="background-registro text-white">
-    <h1 class="title-registro text-center mb-5">¡Únete a HOKU!</h1>
+    <h1 class="title-registro text-center mb-5">Edita tus datos</h1>
     <b-container class="px-5">
       <el-upload
         class="avatar-uploader text-center"
@@ -14,9 +14,9 @@
         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
       </el-upload>
 
-      <b-form @submit.prevent="createUser">
+      <b-form @submit.prevent="editUser">
         <h5 class="text-center mb-4">Sube tu foto de perfil</h5>
-          <b-row class="my-1">
+        <b-row class="my-1">
           <b-col sm="2">
             <label for="input-default">Primer Nombre:</label>
           </b-col>
@@ -99,7 +99,7 @@
           </b-col>
         </b-row>
         <div class="text-center mt-4">
-          <b-button type="submit" variant="light">Registrarse</b-button>
+          <b-button type="submit" variant="light">Actualizar</b-button>
           <b-button variant="light" class="mx-5" :to="{ name: 'Home' }"
             >Volver Inicio</b-button
           >
@@ -151,12 +151,12 @@
 
 <script>
 import firebase from "firebase";
+import { db } from "../main";
 export default {
-data() {
-     return {
-          imageUrl: "",
+  data() {
+    return {
+      imageUrl: "",
       form: {
-        rut: "",
         primerNombre: "",
         segundoNombre: "",
         apellidoPaterno: "",
@@ -165,6 +165,7 @@ data() {
         fechaNacimiento: "",
         userID: "",
         photoPerfil: "",
+        email: "",
       },
       opcion: [
         { text: "Seleccione una opción", value: null },
@@ -173,11 +174,10 @@ data() {
       ],
       fileList: [],
       archivo: {},
-     }
-},
-methods: {
-
-     handleAvatarSuccess(res, file) {
+    };
+  },
+  methods: {
+    handleAvatarSuccess(res, file) {
       this.imageUrl = URL.createObjectURL(file.raw);
     },
     beforeAvatarUpload(file) {
@@ -192,7 +192,7 @@ methods: {
       }
       return isJPG && isLt2M;
     },
-     upload(file) {
+    upload(file) {
       console.log(file);
       this.archivo = file.file;
       let storageRef = firebase
@@ -214,9 +214,55 @@ methods: {
           });
         });
     },
-},
+    cargarInfoUser() {
+      setTimeout(() => {
+        let variable = db
+          .collection("usuarios")
+          .where("userID", "==", this.$store.state.userSession);
+        variable
+          .get()
+          .then((snapshot) => {
+            if (snapshot.empty) {
+              console.log("No matching documents.");
+              return;
+            }
+            snapshot.forEach((doc) => {
+              this.form.userID = this.$store.state.userSession;
+              this.form.primerNombre = doc.data().primerNombre;
+              this.form.segundoNombre = doc.data().segundoNombre;
+              this.form.apellidoPaterno = doc.data().apellidoPaterno;
+              this.form.apellidoMaterno = doc.data().apellidoMaterno;
+              this.form.sexo = doc.data().sexo;
+              this.form.fechaNacimiento = doc.data().fechaNacimiento;
+              this.form.photoPerfil = doc.data().photoPerfil;
+              this.form.email = doc.data().email;
+            });
+          })
+          .catch((err) => {
+            console.log("Error getting documents", err);
+          });
+      }, 1500);
+    },
 
-}
+    editUser() {
+      this.$store.dispatch("editandoUsuario", this.form);
+      this.$notify({
+        title: "¡Editar Usuario!",
+        message: "Haz editado tus datos con éxito",
+        type: "success",
+      });
+      console.log('estoy aqui')
+      this.$store.dispatch("updateUserNameAct", this.form);
+      setTimeout(() => {
+        this.$router.push("/usuario");
+      }, 1000);
+    },
+  },
+
+  mounted() {
+    this.cargarInfoUser();
+  },
+};
 </script>
 
 <style lang="scss">
@@ -259,6 +305,6 @@ methods: {
   width: 178px;
   height: 178px;
   display: block;
-  margin:auto;
+  margin: auto;
 }
 </style>

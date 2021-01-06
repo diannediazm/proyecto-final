@@ -10,7 +10,9 @@ const timeSave = firebase.firestore.FieldValue.serverTimestamp()
 
 export default new Vuex.Store({
      state: {
-          userSession: null
+          userSession: null,
+          nombreUser: null,
+          fotoPerfil: null,
      },
      getters: {
           mostrarData(state) {
@@ -22,6 +24,14 @@ export default new Vuex.Store({
                console.log('entrando en la mutacion'); 
                state.userSession = usuario;
                console.log(state.userSession);
+          },
+          updateUserNameMut(state, data){
+               console.log('entrando en la mutacion'); 
+               console.log(data);
+               state.nombreUser = data.primerNombre;
+               state.fotoPerfil = data.photoPerfil;
+               console.log(state.userSession);
+               console.log(state.fotoPerfil);
           }
      },
      actions: {
@@ -30,12 +40,16 @@ export default new Vuex.Store({
                console.log('entrando a la accion')
                context.commit('updateUserSessionMut', data)
           },
+          
+          updateUserNameAct(context, data){
+               console.log('entrando a la accion')
+               context.commit('updateUserNameMut', data)
+          },
 
           creandoUsuarios(context, data) {
                db.collection("usuarios")
                     .doc(data.userID)
                     .set({
-                         rut: data.rut,
                          primerNombre: data.primerNombre,
                          segundoNombre: data.segundoNombre,
                          apellidoPaterno: data.apellidoPaterno,
@@ -48,6 +62,22 @@ export default new Vuex.Store({
                     });
 
                     this.userSession = data.userID;
+          },
+
+          editandoUsuario(context, data) {
+               db.collection("usuarios")
+                    .doc(data.userID)
+                    .set({
+                         primerNombre: data.primerNombre,
+                         segundoNombre: data.segundoNombre,
+                         apellidoPaterno: data.apellidoPaterno,
+                         apellidoMaterno: data.apellidoMaterno,
+                         sexo: data.sexo,
+                         fechaNacimiento: data.fechaNacimiento,
+                         photoPerfil: data.photoPerfil,
+                         userID: data.userID,
+                         email: data.email,
+                    });
           },
 
           cargandoHistorias(context, data){

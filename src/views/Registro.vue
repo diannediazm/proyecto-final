@@ -125,13 +125,16 @@
               type="password"
             ></b-form-input>
           </b-col>
-        </b-row>
-        <div class="text-center mt-4">
+          <b-col>
+          <div class="text-center mt-4">
           <b-button type="submit" variant="light">Registrarse</b-button>
-          <b-button variant="light" class="mx-5" :to="{ name: 'Home' }"
+          <b-button variant="light" class="mx-2" :to="{ name: 'Home' }"
             >Volver Inicio</b-button
           >
         </div>
+        </b-col>
+        </b-row>
+        
       </b-form>
     </b-container>
     <b-container class="mt-5">
@@ -287,41 +290,9 @@ export default {
   padding-bottom: 300px;
   background-image: url("../assets/img/pastel.jpg");
   background-size: cover;
-  height: 900px;
+  height: 100%;
   width: 100%;
   background-repeat: no-repeat;
 }
-.title-registro {
-  padding-top: 50px;
-}
-.avatar-uploader .el-upload {
-  border: 1px dashed #d9d9d9;
-  border-radius: 6px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  background-color: #fae0df;
-}
-.avatar-uploader .el-upload:hover {
-  border-color: #409eff;
-}
-.avatar-uploader-icon {
-  font-size: 28px;
-  color: #8c939d;
-  width: 178px;
-  height: 178px;
-  line-height: 178px;
-  text-align: center;
-}
-.el-icon-plus,
-.avatar-uploader-icon {
-  line-height: 160px !important;
-}
 
-.avatar {
-  width: 178px;
-  height: 178px;
-  display: block;
-  margin:auto;
-}
 </style>

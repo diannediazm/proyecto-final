@@ -1,6 +1,6 @@
 <template>
      <div class="background-fotos">
-          <b-container>
+          <b-container class="pb-5">
                <div class="title-fotos text-center mb-5 text-white">
                     <h1>¡Sube tus fotografías!</h1>
                     <p class="bajada-title">
@@ -24,7 +24,7 @@
                                    ¿Recuerdas la fecha de las fotografías?
                               </p>
                               <el-form-item label="Rango de fecha">
-                                   <el-col :span="11">
+                                   <el-col>
                                         <el-date-picker
                                              type="date"
                                              placeholder="Pick a date"
@@ -66,7 +66,7 @@
                          </el-form>
                     </b-col>
                     <b-col xl="6" lg="6" md="6" xs="12" class="carga my-5 text-center">
-                         <el-form ref="form" :model="form" label-width="120px">
+                         <el-form ref="form" :model="form">
                               <el-form-item>
                                    <el-upload
                                         class="upload-demo"
@@ -252,7 +252,7 @@ export default {
 .background-fotos {
      background-image: url("../assets/img/cargafotos.jpg");
      background-size: cover;
-     height: 800px;
+     height: 100%;
      width: 100%;
      background-repeat: no-repeat;
 }

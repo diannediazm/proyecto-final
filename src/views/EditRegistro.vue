@@ -270,7 +270,7 @@ export default {
   padding-bottom: 300px;
   background-image: url("../assets/img/pastel.jpg");
   background-size: cover;
-  height: 900px;
+  height: 100%;
   width: 100%;
   background-repeat: no-repeat;
 }

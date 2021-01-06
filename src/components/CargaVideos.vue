@@ -22,7 +22,7 @@
                               </el-form-item>
                               <p class="text-left">¿Recuerdas la fecha?</p>
                               <el-form-item label="Rango de fecha">
-                                   <el-col :span="11">
+                                   <el-col>
                                         <el-date-picker
                                              type="date"
                                              placeholder="Pick a date"
@@ -63,7 +63,7 @@
                          </el-form>
                     </b-col>
                     <b-col class="carga my-5 text-center">
-                         <el-form ref="form" :model="form" label-width="120px">
+                         <el-form ref="form" :model="form">
                               <el-form-item>
                                    <el-upload
                                         class="upload-demo"
@@ -223,7 +223,7 @@ export default {
      padding-bottom: 50px;
      background-image: url("../assets/img/playa.jpg");
      background-size: cover;
-     height: 800px;
+     height: 100%;
      width: 100%;
      background-repeat: no-repeat;
 }

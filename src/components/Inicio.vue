@@ -79,10 +79,10 @@
         <b-button pill href="/historias" variant="info" class="mt-4">Sube tus historias</b-button>
       </b-card>
     </b-card-group>
-    <b-container class="casos my-5">
-      <b-row>
+    <b-container class="casos my-5 text-center">
+      <b-row class="casos-linea m-auto">
         <b-col xl="6" lg="6" md="6" xs="12">
-          <img src="../assets/img/pareja.jpg" alt="" class="avatar my-4" rounded="circle">
+          <img src="../assets/img/pareja.jpg" alt="" class="avatar-caso my-4" rounded="circle">
         </b-col>
         <b-col xl="6" lg="6" md="6" xs="12">
           <h5 class="casos-text">"Mi marido falleció repentinamente. Fue un dolor tremendo. Luego de pasar el schock empecé a re ordenar la vida y recordé la cuenta de criptomonedas donde él había estado invirtiendo para el futuro familiar. Me comuniqué con ellos, pero no pudieron darme acceso. Solo logré entrar gracias a que Jorge me heredó su información en HOKU."</h5>  
@@ -90,10 +90,10 @@
         </b-col>
       </b-row>
     </b-container>
-    <b-container class="casos">
-      <b-row class="casos-linea">
+    <b-container class="casos my-5 text-center">
+      <b-row class="casos-linea m-auto">
         <b-col xl="6" lg="6" md="6" xs="12">
-          <img src="../assets/img/abuelo.jpg" alt="" class="avatar my-4" rounded="circle">
+          <img src="../assets/img/abuelo.jpg" alt="" class="avatar-caso my-4" rounded="circle">
         </b-col>
         <b-col xl="6" lg="6" md="6" xs="12">
           <h5 class="casos-text">"Me detectaron Alzheimer y antes de que se me empiecen a olvidar las cosas, quiero dejar un legado para mis nietas. Aún están muy pequeñas, pero podré heredarles mis historias para cuando sean mayores. Hoku es fácil de usar y será mi respaldo de memoria para cuando mi mente se vaya"</h5>
@@ -163,10 +163,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 .background-home {
-    background-image: url('../assets/img/woman.jpg');
-    background-size: cover;
-    height: 800px;
-    max-width: 100%;
-    background-repeat: no-repeat;
-  }
+  background-image: url('../assets/img/woman.jpg');
+  background-size: cover;
+  height: 800px;
+  max-width: 100%;
+  background-repeat: no-repeat;
+}
 </style>

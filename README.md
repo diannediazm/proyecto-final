@@ -28,6 +28,7 @@ NPM
 VUE (Vuex, Vue Router)
 TEST JEST.
 FIREBASE (Firebase Config, Cloud Firestore, Storage)
+AXIOS
 BOOTSTRAP VUE
 ELEMENT IO
 

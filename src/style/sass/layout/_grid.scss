@@ -9,18 +9,17 @@
     padding: 20px;
     border-radius: 50px;
   }
-  .avatar {
+  .avatar-caso {
     width:130px;
     height:130px;
     border-radius:100px;
-    margin-left: 150px;
   }
   .casos-text {
     font-size: 17px;
     font-weight: 400;
   }
   .casos-linea {
-        align-items: center;
+    align-items: center;
   }
   .title-fotos {
     padding-top: 50px;
@@ -47,6 +46,40 @@
     background-color: darkmagenta;
     height: 90%;
 }
+.title-registro {
+  padding-top: 50px;
+}
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  background-color: #fae0df;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409eff;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  line-height: 178px;
+  text-align: center;
+}
+.el-icon-plus,
+.avatar-uploader-icon {
+  line-height: 160px !important;
+}
+
+.avatar {
+  width: 178px;
+  height: 178px;
+  display: block;
+  margin:auto;
+}
+
 
 @media (max-width: 575.98px) {
   .bv-example-row {
@@ -54,6 +87,17 @@
   }
   .bajada-title {
     display: none;
+  }
+  .background-home {
+    background-image: '../assets/img/woman.jpg';
+    background-size: contain;
+    background-position: top;
+  }
+  .upload-demo .el-upload-dragger {
+    width: 300px;
+  }
+  .el-form .el-form-item__label {
+    text-align: left;
   }
   
 }

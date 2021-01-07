@@ -1,5 +1,5 @@
 <template>
-  <div class="py-5 background-profile text-center text-white">
+  <div class="py-5 background-profile text-center text-white" id="inicio">
     <b-container class="formulario text-center">
       <h1 class="mb-5">¡Hola {{ $store.state.nombreUser }} !</h1>
       <b-row>
@@ -159,9 +159,11 @@ export default {
   },
 
   mounted() {
-    this.cargaHistorias();
-    this.cargaVideos();
-    this.cargaFotos();
+       setTimeout(() =>{
+            this.cargaHistorias();
+            this.cargaVideos();
+            this.cargaFotos();
+       },1500)
   },
 };
 </script>

@@ -20,29 +20,21 @@ export default new Vuex.Store({
           }
      },
      mutations: {
-          updateUserSessionMut(state, usuario){
-               console.log('entrando en la mutacion'); 
+          updateUserSessionMut(state, usuario){ 
                state.userSession = usuario;
-               console.log(state.userSession);
           },
           updateUserNameMut(state, data){
-               console.log('entrando en la mutacion'); 
-               console.log(data);
                state.nombreUser = data.primerNombre;
                state.fotoPerfil = data.photoPerfil;
-               console.log(state.userSession);
-               console.log(state.fotoPerfil);
           }
      },
      actions: {
 
           updateUserSessionAct(context, data){
-               console.log('entrando a la accion')
                context.commit('updateUserSessionMut', data)
           },
           
           updateUserNameAct(context, data){
-               console.log('entrando a la accion')
                context.commit('updateUserNameMut', data)
           },
 

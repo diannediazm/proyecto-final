@@ -154,9 +154,6 @@ export default {
           }
       }
     },
-    beforeCreate() {
-      console.log("inicio: " + this.$store.state.userSession)
-    }
   }
 </script>
 

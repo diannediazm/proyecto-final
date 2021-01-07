@@ -85,40 +85,46 @@ export default {
           console.error(error);
         });
     },
+
+    consultaAutenticacion() {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          //console.log(user.displayName);
+          this.uid = user.uid;
+          this.$store.dispatch("updateUserSessionAct", user.uid);
+          setTimeout(() => {
+            let variable = db
+              .collection("usuarios")
+              .where("userID", "==", user.uid)
+              .get();
+            variable
+              .then((snapshot) => {
+                if (snapshot.empty) {
+                  console.log("No matching documents.");
+                  return;
+                }
+                snapshot.forEach((doc) => {
+                  this.usuario.push(doc.data());
+                });
+                this.$store.dispatch("updateUserNameAct", this.usuario[0]);
+              })
+              .catch((err) => {
+                console.log("Error getting documents", err);
+              });
+          }, 5000);
+          // console.log("Si hay usuario con sesión activa");
+        } else {
+          //  console.log("No hay usuario con sesión activa...");
+          this.uid = "";
+          let sesionUsuario = null;
+          this.$store.dispatch("updateUserSessionAct", sesionUsuario);
+        }
+      });
+    },
   },
 
-  mounted() {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        //console.log(user.displayName);
-        this.uid = user.uid;
-        this.$store.dispatch("updateUserSessionAct", user.uid);
-        setTimeout(() => {
-          db.collection("usuarios")
-            .where("userID", "==", user.uid)
-            .get()
-            .then((snapshot) => {
-              if (snapshot.empty) {
-                console.log("No matching documents.");
-                return;
-              }
-              snapshot.forEach((doc) => {
-                this.usuario.push(doc.data());
-              });
-              this.$store.dispatch("updateUserNameAct", this.usuario[0]);
-            })
-            .catch((err) => {
-              console.log("Error getting documents", err);
-            });
-        }, 1500);
-        // console.log("Si hay usuario con sesión activa");
-      } else {
-        //  console.log("No hay usuario con sesión activa...");
-        this.uid = "";
-        let sesionUsuario = null;
-        this.$store.dispatch("updateUserSessionAct", sesionUsuario);
-      }
-    });
+  async mounted() {
+    await this.consultaAutenticacion();
   },
 };
 </script>

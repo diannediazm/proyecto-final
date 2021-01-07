@@ -1,113 +1,118 @@
 <template>
-     <div class="background-videos text-white">
-          <div class="text-videos text-center">
-               <h1>¿Cuáles son los videos que miras una y otra vez?</h1>
-               <p class="bajada-title">
-                    Estamos subiendo videos a redes sociales, recibiendo desde
-                    chats familiares, pero ¿tienes a mano los realmente
-                    importantes?
-               </p>
-          </div>
-          <b-container>
-               <b-row class="formulario">
-                    <b-col class="text-center my-4">
-                         <h3 text-left>¡Sube tus videos!</h3>
-                         <p class="text-left">
-                              Elige un nombre para el video: un día o alguien
-                              especial
-                         </p>
-                         <el-form ref="form" :model="form" label-width="120px">
-                              <el-form-item label="Nombre">
-                                   <el-input v-model="form.name"></el-input>
-                              </el-form-item>
-                              <p class="text-left">¿Recuerdas la fecha?</p>
-                              <el-form-item label="Rango de fecha">
-                                   <el-col>
-                                        <el-date-picker
-                                             type="date"
-                                             placeholder="Pick a date"
-                                             v-model="form.date1"
-                                             style="width: 100%;"
-                                        ></el-date-picker>
-                                   </el-col>
-                              </el-form-item>
-                              <p class="text-left">¿Lugar del video?
-                              <el-select
-                                   v-model="form.pais"
-                                   v-if="country"
-                                   filterable
-                                   remote
-                                   reserve-keyword
-                                   placeholder="Ingresa el país"
-                                   :loading="loading"
-                              >
-                                   <el-option
-                                        v-for="item in country"
-                                        :key="item"
-                                        :label="item"
-                                        :value="item"
-                                   >
-                                   </el-option>
-                              </el-select>
-                              </p>
-                              <p class="text-left">
-                                   Escribe alguna anécdota, historia o incluso
-                                   algún secreto relacionado.
-                              </p>
-                              <el-form-item label="Descripción">
-                                   <el-input
-                                        type="textarea"
-                                        v-model="form.desc"
-                                   ></el-input>
-                              </el-form-item>
-                         </el-form>
-                    </b-col>
-                    <b-col class="carga my-5 text-center">
-                         <el-form ref="form" :model="form">
-                              <el-form-item>
-                                   <el-upload
-                                        class="upload-demo"
-                                        drag
-                                        :http-request="upload"
-                                        action="cargaArchivo"
-                                        :on-preview="handlePreview"
-                                        :on-remove="handleRemove"
-                                        :file-list="fileList"
-                                        multiple
-                                   >
-                                        <i class="el-icon-upload"></i>
-                                        <div class="el-upload__text">
-                                             Suelta tu archivo aquí o
-                                             <em>haz clic para cargar</em>
-                                        </div>
-                                        <div
-                                             slot="tip"
-                                             class="el-upload__tip text-white"
-                                        >
-                                             Solo archivos jpg/png con un tamaño
-                                             menor de 500kb
-                                        </div>
-                                   </el-upload>
-                              </el-form-item>
-                              <el-form-item>
-                                   <el-button
-                                        type="light"
-                                        round
-                                        @click="onSubmit"
-                                        >Subir</el-button
-                                   >
-                                   <el-button
-                                        type="danger"
-                                        round
-                                        @click="volver"
-                                        >Volver</el-button
-                                   >
-                              </el-form-item>
-                         </el-form>
-                    </b-col>
-               </b-row>
-          </b-container>
-     </div>
+  <div class="background-videos text-white">
+    <div class="text-videos text-center">
+      <h1>¿Cuáles son los videos que miras una y otra vez?</h1>
+      <p class="bajada-title">
+        Estamos subiendo videos a redes sociales, recibiendo desde chats
+        familiares, pero ¿tienes a mano los realmente importantes?
+      </p>
+    </div>
+    <b-container>
+      <b-row class="formulario">
+        <b-col class="text-center my-4">
+          <h3 text-left>¡Sube tus videos!</h3>
+          <p class="text-left">
+            Elige un nombre para el video: un día o alguien especial
+          </p>
+          <el-form ref="form" :model="form" label-width="120px">
+            <el-form-item label="Nombre">
+              <el-input v-model="form.name"></el-input>
+            </el-form-item>
+            <p class="text-left">¿Recuerdas la fecha?</p>
+            <el-form-item label="Rango de fecha">
+              <el-col>
+                <el-date-picker
+                  type="date"
+                  placeholder="Pick a date"
+                  v-model="form.date1"
+                  style="width: 100%"
+                ></el-date-picker>
+              </el-col>
+            </el-form-item>
+            <p class="text-left">
+              ¿Lugar del video?
+              <el-select
+                v-model="form.pais"
+                v-if="country"
+                filterable
+                remote
+                reserve-keyword
+                placeholder="Ingresa el país"
+                :loading="loading"
+              >
+                <el-option
+                  v-for="item in country"
+                  :key="item"
+                  :label="item"
+                  :value="item"
+                >
+                </el-option>
+              </el-select>
+            </p>
+            <p class="text-left">
+              Escribe alguna anécdota, historia o incluso algún secreto
+              relacionado.
+            </p>
+            <el-form-item label="Descripción">
+              <el-input type="textarea" v-model="form.desc"></el-input>
+            </el-form-item>
+          </el-form>
+        </b-col>
+        <b-col class="carga my-5 text-center">
+          <b-form-group label="Individual radios" v-slot="{ ariaDescribedby }">
+            <b-form-radio
+              @change="clickLink"
+              :model="selected"
+              :aria-describedby="ariaDescribedby"
+              :checked="selected ='A'"
+              name="some-radios"
+              value="A"
+              >Option A</b-form-radio
+            >
+            <b-form-radio
+              @change="clickVideo"
+              :model="selected"
+              :aria-describedby="ariaDescribedby"
+              name="some-radios"
+              value="B"
+              >Option B</b-form-radio
+            >
+          </b-form-group>
+          <el-form ref="form" :model="form">
+            <el-form-item v-show="isShowLink" label="Link Youtube">
+              <el-input v-model="form.videoURL"></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-upload
+                v-show="isShowVideo"
+                class="upload-demo"
+                drag
+                :http-request="upload"
+                action="cargaArchivo"
+                :on-preview="handlePreview"
+                :on-remove="handleRemove"
+                :file-list="fileList"
+                multiple
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  Suelta tu archivo aquí o
+                  <em>haz clic para cargar</em>
+                </div>
+                <div slot="tip" class="el-upload__tip text-white">
+                  Solo archivos jpg/png con un tamaño menor de 500kb
+                </div>
+              </el-upload>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="light" round @click="onSubmit">Subir</el-button>
+              <el-button type="danger" round @click="volver">Volver</el-button>
+            </el-form-item>
+          </el-form>
+        </b-col>
+      </b-row>
+    </b-container>
+  </div>
 </template>
 
 <script>
@@ -119,6 +124,8 @@ export default {
     return {
       country: [],
       loading: false,
+      isShowLink: true,
+      isShowVideo: false,
       form: {
         name: "",
         date1: "",
@@ -127,6 +134,7 @@ export default {
         userID: "",
         pais: "",
       },
+      selected: "A",
       rules: [
         (value) =>
           !value ||
@@ -138,6 +146,18 @@ export default {
     };
   },
   methods: {
+    clickLink() {
+      this.isShowLink = !this.isShowLink;
+      this.isShowVideo = !this.isShowVideo;
+      this.selected = "A";
+      console.log("click A");
+    },
+    clickVideo() {
+      this.isShowLink = !this.isShowLink;
+      this.isShowVideo = !this.isShowVideo;
+      this.selected = "B";
+      console.log("click B");
+    },
     handleRemove(file, fileList) {
       console.log(file, fileList);
     },
@@ -158,7 +178,7 @@ export default {
     onSubmit(event) {
       console.log(event);
       console.log(this.archivo);
-      if (this.archivo) {
+      if (this.selected === 'B') {
         let userid = this.$store.state.userSession;
         let storageRef = firebase
           .storage()
@@ -187,6 +207,16 @@ export default {
               type: "success",
             });
           });
+      }else{
+           this.form.videoURL = this.form.videoURL.replace('watch?v=','embed/');
+           this.form.userID = this.$store.state.userSession;
+           this.$store.dispatch("cargandoVideos", this.form);
+           this.$notify({
+              title: "¡Subida exitosa!",
+              message: "Tu video se subió",
+              type: "success",
+            });
+           this.$router.push("/usuario");
       }
     },
     volver() {
@@ -208,11 +238,11 @@ export default {
 
 <style lang="scss">
 .background-videos {
-     padding-bottom: 50px;
-     background-image: url("../assets/img/playa.jpg");
-     background-size: cover;
-     height: 100%;
-     width: 100%;
-     background-repeat: no-repeat;
+  padding-bottom: 50px;
+  background-image: url("../assets/img/playa.jpg");
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
 }
 </style>

@@ -30,6 +30,10 @@ Vue.use(VueLodash, { lodash: lodash })
 Vue.use(VueAxios, axios)
 library.add(faUserSecret);
 
+import vuescroll from 'vuescroll/dist/vuescroll-native';
+
+Vue.use(vuescroll);
+
 export const db = firebase.firestore();
 export const storage = firebase.storage();
 

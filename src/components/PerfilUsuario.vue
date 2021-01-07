@@ -3,11 +3,10 @@
     <b-container class="formulario text-center">
       <h1 class="mb-5 text-white">¡Hola {{ $store.state.nombreUser }}!</h1>
       <b-row>
-        <b-col xl="4" lg="4" md="4" xs="12" class="my-3 scrollbar scrollbar-young-passion"
-           id="nav-scroller"
-           ref="content"
-           style="position:relative; height:680px; overflow-y:scroll;">
-          <b-card v-for="(data, index) in listFotos" :key="index" class="mb-3 force-overflow"> 
+        
+        <b-col xl="4" lg="4" md="4" xs="12" class="my-3">
+          <vuescroll :ops="ops">
+          <b-card v-for="(data, index) in listFotos" :key="index" class="mb-3"> 
                {{ listFotos[index].name }}
                <img :src="listFotos[index].photoURL" fluid img-alt="Image" img-top width="100%" @click="$bvModal.show('id'+index)">          
                <b-modal v-bind:id="'id'+index" hide-footer>
@@ -33,12 +32,13 @@
               {{listFotos[index].pais}}
                </small>
                </template>
-          </b-card>          
+          </b-card> 
+          </vuescroll>         
         </b-col>
-        <b-col xl="4" lg="4" md="4" xs="12" class="my-3"
-          id="nav-scroller"
-          ref="content"
-          style="position:relative; height:680px; overflow-y:scroll;">
+        
+        
+        <b-col xl="4" lg="4" md="4" xs="12" class="my-3">
+          <vuescroll :ops="ops">
           <b-card v-for="(data, index) in listVideos" :key="index" class="mb-3" @click="$bvModal.show('idVideo'+index)"> 
                {{ listVideos[index].name }}
                <b-embed
@@ -75,12 +75,11 @@
               {{listVideos[index].pais}}
                </small>
                </template>
-          </b-card>          
+          </b-card>        
+          </vuescroll>  
         </b-col>
-        <b-col xl="4" lg="4" md="4" xs="12" class="my-3"
-          id="nav-scroller"
-          ref="content"
-          style="position:relative; height:680px; overflow-y:scroll;">
+        <b-col xl="4" lg="4" md="4" xs="12" class="my-3">
+          <vuescroll :ops="ops">
          <b-card v-for="(data, index) in listHistorias" :key="index" class="card-historia mb-3" header-tag="header" footer-tag="footer" @click="$bvModal.show('idHistoria'+index)">
                <b-modal v-bind:id="'idHistoria'+index" hide-footer>
                   <template #modal-title> {{ listHistorias[index].title }} </template>
@@ -105,6 +104,7 @@
               }}</em>
                </template>
           </b-card>
+          </vuescroll>
         </b-col>
       </b-row>
     </b-container>
@@ -114,7 +114,7 @@
 <script>
 import { db } from "../main";
 import _ from "lodash";
-import { mdbRow, mdbCol } from 'mdbvue';
+import vuescroll from 'vuescroll';
 
 export default {
   name: "PerfilUsuario",
@@ -123,7 +123,27 @@ export default {
       historia: [],
       video: [],
       foto: [],
+      ops: {
+          vuescroll: {},
+          scrollPanel: {},
+          rail: {},
+          bar: {
+            showDelay: 500,
+            onlyShowBarOnScroll: true,
+            keepShow: false,
+            background: '#c1c1c1',
+            opacity: 1,
+            hoverStyle: false,
+            specifyBorderRadius: false,
+            minSize: 0,
+            size: '6px',
+            disable: false,
+           },
+        }
     }
+  },
+  components: {
+    vuescroll
   },
   methods: {
     cargaHistorias() {
@@ -220,38 +240,7 @@ export default {
   width: 100%;
   background-repeat: no-repeat;
 }
-.force-overflow {
-    min-height: 450px;
-  }
-.scrollbar {
-    float: left;
-    height: 300px;
-    width: 150px;
-    background: #fff;
-    overflow-y: scroll;
-    margin-bottom: 25px;
-  }
-.scrollbar-young-passion::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
-    background-color: #F5F5F5;
-    border-radius: 10px;
-  }
 
-  .scrollbar-young-passion::-webkit-scrollbar {
-    width: 12px;
-    background-color: #F5F5F5;
-  }
-
-  .scrollbar-young-passion::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
-    background-image: -webkit-gradient(linear, left top, right top, from(#ff8177), color-stop(0%, #ff867a),
-      color-stop(21%, #ff8c7f), color-stop(52%, #f99185), color-stop(78%, #cf556c), to(#b12a5b));
-    background-image: -webkit-linear-gradient(left, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%,
-      #b12a5b 100%);
-    background-image: linear-gradient(to bottom, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%,
-      #b12a5b 100%);
-  }
 @media (min-width: 1200px){
      .container, .container-lg, .container-md, .container-sm, .container-xl {
     max-width: 1440px !important;

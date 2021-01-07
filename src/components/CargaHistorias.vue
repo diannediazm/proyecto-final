@@ -61,8 +61,14 @@ export default {
           setTimeout(() => {
             this.form.idUser = this.$store.state.userSession;
             this.$store.dispatch("cargandoHistorias", this.form);
-            alert("historia cargada")
-          }, 2500)
+            this.$router.push("/usuario");
+            }, 2500),
+            this.$notify({
+              title: "¡Subida exitosa!",
+              message: "Tu historia se subió",
+              type: "success",
+            });
+          
         } catch (error) {
           alert("Error", error)
         }

@@ -1,67 +1,93 @@
 <template>
-  <div class="py-5 background-profile text-center text-white">
+  <div class="py-5 background-profile text-center">
     <b-container class="formulario text-center">
-      <h1 class="mb-5">¡Hola {{ $store.state.nombreUser }} !</h1>
+      <h1 class="mb-5 text-white">¡Hola {{ $store.state.nombreUser }}!</h1>
       <b-row>
-        <b-col xl="4" lg="4" md="4" xs="12" class="my-3">
-          <h5>Últimas fotos</h5>
-          <div class="box py-5" v-for="(data, index) in listFotos" :key="index">
-            <p>Nombre: {{ listFotos[index].name }}</p>
-            <p>Desc: {{ listFotos[index].desc }}</p>
-            <p>
-              fecha foto:
-              {{
+        <b-col xl="4" lg="4" md="4" xs="12" class="my-3"
+           id="nav-scroller"
+           ref="content"
+           style="position:relative; height:680px; overflow-y:scroll;">
+          <b-card v-for="(data, index) in listFotos" :key="index" class="mb-3"> 
+               {{ listFotos[index].name }}
+               <img :src="listFotos[index].photoURL" fluid img-alt="Image" img-top width="100%" v-b-modal.modal-1>
+               <b-modal id="modal-1" title="Últimas fotos">
+                    <img :src="listFotos[index].photoURL" fluid img-alt="Image" img-top width="100%">
+               </b-modal>
+               <b-card-text>
+               {{ listFotos[index].desc }}
+               </b-card-text>
+               <template #footer>
+               <small class="text-muted">
+                    {{
                 Intl.DateTimeFormat("es-CL").format(
                   listFotos[index].date1.toDate()
                 )
               }}
-            </p>
-            <b-img :src="listFotos[index].photoURL" fluid></b-img>
-          </div>
+               </small>
+               </template>
+          </b-card>          
         </b-col>
-        <b-col xl="4" lg="4" md="4" xs="12" class="my-3">
-          <h5>Últimos videos</h5>
-          <div
-            class="box py-5"
-            v-for="(data, index) in listVideos"
-            :key="index"
-          >
-            <p>Nombre: {{ listVideos[index].name }}</p>
-            <p>Descripcion: {{ listVideos[index].desc }}</p>
-            <p>
-              fecha:
-              {{
+        <b-col xl="4" lg="4" md="4" xs="12" class="my-3"
+          id="nav-scroller"
+          ref="content"
+          style="position:relative; height:680px; overflow-y:scroll;">
+          <b-card v-for="(data, index) in listVideos" :key="index" class="mb-3" v-b-modal.modal-2> 
+               {{ listVideos[index].name }}
+               <b-embed
+                    type="iframe"
+                    aspect="4by3"
+                    :src="listVideos[index].videoURL"
+                    allowfullscreen
+               ></b-embed>
+               <b-modal id="modal-2" title="Últimos videos">
+                    <b-embed
+                    type="iframe"
+                    aspect="4by3"
+                    :src="listVideos[index].videoURL"
+                    allowfullscreen
+               ></b-embed>
+               </b-modal>
+               <b-card-text>
+               {{ listVideos[index].desc }}
+               </b-card-text>
+               <template #footer>
+               <small class="text-muted">
+                    {{
                 Intl.DateTimeFormat("es-CL").format(
                   listVideos[index].date1.toDate()
                 )
               }}
-            </p>
-            <b-embed
-              type="iframe"
-              aspect="4by3"
-              :src="listVideos[index].videoURL"
-              allowfullscreen
-            ></b-embed>
-          </div>
+               </small>
+               </template>
+          </b-card>          
         </b-col>
-        <b-col xl="4" lg="4" md="4" xs="12" class="my-3">
-          <h5>Últimas historias</h5>
-          <div
-            class="box py-5"
-            v-for="(data, index) in listHistorias"
-            :key="index"
-          >
-            <p>Titulo: {{ listHistorias[index].title }}</p>
-            <p>Text: {{ listHistorias[index].text }}</p>
-            <p>
-              fecha:
-              {{
+        <b-col xl="4" lg="4" md="4" xs="12" class="my-3"
+          id="nav-scroller"
+          ref="content"
+          style="position:relative; height:680px; overflow-y:scroll;">
+         <b-card v-for="(data, index) in listHistorias" :key="index" class="mb-3" header-tag="header" footer-tag="footer" v-b-modal.modal-3>
+              <b-modal id="modal-3" title="Últimas historias">
+                    <template #header>
+                    <h6 class="mb-0">{{ listHistorias[index].title }}</h6>
+                    </template>
+                    <b-card-text>
+                         {{ listHistorias[index].text}}
+                    </b-card-text>
+               </b-modal>
+               <template #header>
+               <h6 class="mb-0">{{ listHistorias[index].title }}</h6>
+               </template>
+               <b-card-text>
+                    {{ listHistorias[index].text}}
+               </b-card-text>
+               <template #footer>
+               <em>{{
                 Intl.DateTimeFormat("es-CL").format(
                   listHistorias[index].fechaHora.toDate()
                 )
-              }}
-            </p>
-          </div>
+              }}</em>
+               </template>
+          </b-card>
         </b-col>
       </b-row>
     </b-container>
@@ -174,5 +200,10 @@ export default {
   height: 1000px;
   width: 100%;
   background-repeat: no-repeat;
+}
+@media (min-width: 1200px){
+     .container, .container-lg, .container-md, .container-sm, .container-xl {
+    max-width: 1440px !important;
+     }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="py-3 background-profile text-center">
+  <div class="pt-3 background-profile text-center">
     <b-container class="formulario text-center">
       <h1 class="mb-3 text-white">¡Hola {{ $store.state.nombreUser }}!</h1>
       <b-row>
@@ -105,6 +105,9 @@
         </b-col>
       </b-row>
     </b-container>
+    <footer class="bg-dark text-white mt-5">
+      <h2 class="text-footer text-center font-weight-bold m-auto">HOKU</h2>
+    </footer>
   </div>
 </template>
 
@@ -230,7 +233,7 @@ export default {
 
 <style lang="scss">
 .background-profile {
-  padding-bottom: 50px;
+  
   background-image: url("../assets/img/fondousuario.jpg");
   background-size: cover;
   height: 100%;

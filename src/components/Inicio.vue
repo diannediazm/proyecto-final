@@ -1,7 +1,7 @@
 <template>
   <div class="background-home">
     <header class="title-home container text-center text-white">
-      <h1>¿Quieres revivir tus recuerdos con la misma intensidad en cualquier momento de tu vida?</h1>
+      <h1>¿Quieres revivir tus recuerdos con la misma intensidad <br> en cualquier momento de tu vida?</h1>
       <b-button pill variant="light" :to="{ name: 'Registro' }">¡Crea tu cuenta!</b-button>
     </header>
     <div id="login" class="background-inicio">

@@ -173,11 +173,6 @@ export default {
     },
     onSubmit(event) {
       console.log(event);
-<<<<<<< HEAD
-      console.log(this.archivo);
-      console.log(this.selected);
-=======
->>>>>>> 191d01905d7f844da24d103e7be41866e7f7e841
       if (this.selected == 'B') {
         let userid = this.$store.state.userSession;
         let storageRef = firebase

@@ -126,7 +126,7 @@ export default {
       foto: [],
       ops: {
           vuescroll: {},
-          scrollPanel: {},
+          scrollPanel: {maxHeight: 700},
           rail: {},
           bar: {
             showDelay: 500,

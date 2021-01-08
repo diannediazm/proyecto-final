@@ -1,20 +1,19 @@
 <template>
-  <div class="py-5 background-profile text-center">
+  <div class="py-3 background-profile text-center">
     <b-container class="formulario text-center">
-      <h1 class="mb-5 text-white">¡Hola {{ $store.state.nombreUser }}!</h1>
+      <h1 class="mb-3 text-white">¡Hola {{ $store.state.nombreUser }}!</h1>
       <b-row>
-        
         <b-col xl="4" lg="4" md="4" xs="12" class="my-3">
+          <h4 class="text-white mb-3">Últimas fotos</h4>
           <vuescroll :ops="ops">
           <b-card v-for="(data, index) in listFotos" :key="index" class="mb-3"> 
-               {{ listFotos[index].name }}
-               <img :src="listFotos[index].photoURL" fluid img-alt="Image" img-top width="100%" @click="$bvModal.show('id'+index)">          
+               <h4>{{ listFotos[index].name }} </h4>
+               <img :src="listFotos[index].photoURL" fluid img-alt="Image" img-top width="100%">          
                <b-modal v-bind:id="'id'+index" hide-footer>
                   <template #modal-title> {{ listFotos[index].name }} </template>
                   <div class="d-block text-center">
-                    {{ listFotos[index].desc }}
-                    <b-button pill variant="outline-secondary">Secondary</b-button>
                     <img :src="listFotos[index].photoURL" fluid img-alt="Image" img-top width="100%" class="my-2">
+                    {{ listFotos[index].desc }}
                   </div>
                   <b-button pill class="mt-3" block @click="$bvModal.hide('id'+index)"
                     >Cerrar</b-button
@@ -23,6 +22,7 @@
                <b-card-text>
                {{ listFotos[index].desc }}
                </b-card-text>
+               <b-button pill variant="outline-secondary" @click="$bvModal.show('id'+index)">Ver más</b-button>
                <template #footer>
                <small class="text-muted">
                     {{
@@ -39,9 +39,10 @@
         
         
         <b-col xl="4" lg="4" md="4" xs="12" class="my-3">
+          <h4 class="text-white mb-3">Últimos videos</h4>
           <vuescroll :ops="ops">
-          <b-card v-for="(data, index) in listVideos" :key="index" class="mb-3" @click="$bvModal.show('idVideo'+index)"> 
-               {{ listVideos[index].name }}
+          <b-card v-for="(data, index) in listVideos" :key="index" class="mb-3"> 
+               <h4>{{ listVideos[index].name }}</h4>
                <b-embed
                     type="iframe"
                     aspect="4by3"
@@ -66,6 +67,7 @@
                <b-card-text>
                {{ listVideos[index].desc }}
                </b-card-text>
+               <b-button pill variant="outline-secondary" @click="$bvModal.show('idVideo'+index)">Ver más</b-button>
                <template #footer>
                <small class="text-muted">
                     {{
@@ -80,8 +82,9 @@
           </vuescroll>  
         </b-col>
         <b-col xl="4" lg="4" md="4" xs="12" class="my-3">
+          <h4 class="text-white mb-3">Últimas historias</h4>
           <vuescroll :ops="ops">
-         <b-card v-for="(data, index) in listHistorias" :key="index" class="card-historia mb-3" header-tag="header" footer-tag="footer" @click="$bvModal.show('idHistoria'+index)">
+         <b-card v-for="(data, index) in listHistorias" :key="index" class="mb-3" header-tag="header" footer-tag="footer">
                <b-modal v-bind:id="'idHistoria'+index" hide-footer>
                   <template #modal-title> {{ listHistorias[index].title }} </template>
                   <div class="d-block text-center">
@@ -97,6 +100,7 @@
                <b-card-text>
                     {{ listHistorias[index].text}}
                </b-card-text>
+               <b-button pill variant="outline-secondary" @click="$bvModal.show('idHistoria'+index)">Ver más</b-button>
                <template #footer>
                <em>{{
                 Intl.DateTimeFormat("es-CL").format(

@@ -16,7 +16,7 @@
                               Elige un nombre que identifique a las fotografías:
                               un día especial, una persona o tu mascota.
                          </p>
-                         <el-form ref="form" :model="form" label-width="120px">
+                         <el-form ref="formFotos" :model="form" label-width="120px" :rules="formRules">
                               <el-form-item label="Nombre">
                                    <el-input v-model="form.name"></el-input>
                               </el-form-item>
@@ -131,18 +131,11 @@ export default {
                     userID: "",
                     pais: "",
                },
-               rules: {
+               formRules: {
                     name: [
                          {
                               required: true,
                               message: "Ingresa un nombre para tu fotografía",
-                              trigger: "blur",
-                         },
-                         {
-                              min: 3,
-                              max: 5,
-                              message:
-                                   "El nombre debe tener de tres a 15 letras",
                               trigger: "blur",
                          },
                     ],
@@ -167,6 +160,16 @@ export default {
           };
      },
      methods: {
+          submitForm(form) {
+               this.$refs[form].validate((valid) => {
+               if (valid) {
+                    alert('submit!');
+               } else {
+                    console.log('error submit!!');
+                    return false;
+               }
+               });
+          },
           handleRemove(file, fileList) {
                console.log(file, fileList);
           },

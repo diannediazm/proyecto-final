@@ -7,3 +7,10 @@
 <script>
 export default {};
 </script>
+
+<style lang="scss">
+  .background-not {
+    background-color: #fae0df;
+  }
+  
+</style>

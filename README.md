@@ -35,6 +35,10 @@ ELEMENT IO
 4) Rutas de acceso.
 https://github.com/diannediazm/proyecto-final
 
+https://proyecto-final-92f90.web.app/ 
+Usuario: fer.work.app@gmail.com
+Contraseña: 12345678
+
 ## Project setup
 ```
 npm install

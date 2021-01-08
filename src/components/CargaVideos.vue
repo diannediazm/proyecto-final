@@ -64,7 +64,7 @@
               @change="clickLink"
               :model="selected"
               :aria-describedby="ariaDescribedby"
-              :checked="selected ='A'"
+              :checked="'A'"
               name="some-radios"
               value="A"
               >Desde Youtube</b-form-radio
@@ -92,7 +92,6 @@
                 :on-preview="handlePreview"
                 :on-remove="handleRemove"
                 :file-list="fileList"
-                multiple
               >
                 <i class="el-icon-upload"></i>
                 <div class="el-upload__text">
@@ -134,7 +133,7 @@ export default {
         userID: "",
         pais: "",
       },
-      selected: "A",
+      selected: "",
       rules: [
         (value) =>
           !value ||
@@ -150,13 +149,11 @@ export default {
       this.isShowLink = !this.isShowLink;
       this.isShowVideo = !this.isShowVideo;
       this.selected = "A";
-      console.log("click A");
     },
     clickVideo() {
       this.isShowLink = !this.isShowLink;
       this.isShowVideo = !this.isShowVideo;
       this.selected = "B";
-      console.log("click B");
     },
     handleRemove(file, fileList) {
       console.log(file, fileList);
@@ -172,13 +169,15 @@ export default {
       );
     },
     upload(file) {
-      console.log(file);
       this.archivo = file.file;
     },
     onSubmit(event) {
       console.log(event);
+<<<<<<< HEAD
       console.log(this.archivo);
       console.log(this.selected);
+=======
+>>>>>>> 191d01905d7f844da24d103e7be41866e7f7e841
       if (this.selected == 'B') {
         let userid = this.$store.state.userSession;
         let storageRef = firebase
@@ -187,7 +186,6 @@ export default {
         storageRef
           .put(this.archivo)
           .then((snapshot) => {
-            console.log("funciona");
             console.warn(snapshot.bytesTransferred / snapshot.totalBytes);
           })
           .then(() => {
@@ -195,7 +193,6 @@ export default {
               this.subiendo = 0;
             }, 1500);
             storageRef.getDownloadURL().then((downloadURL) => {
-              console.log("File available at", downloadURL);
               this.form.videoURL = downloadURL;
               this.form.userID = this.$store.state.userSession;
               this.$store.dispatch("cargandoVideos", this.form);

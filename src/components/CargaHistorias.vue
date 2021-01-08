@@ -7,7 +7,7 @@
                 <h1>Cuántas historias que contar</h1>
                 <p>Con el tiempo vamos olvidando los detalles de nuestros momentos memorables, ¡Escríbelos ahora!</p>
               </div>
-                <el-form ref="form" :model="form" label-width="120px">
+                <el-form ref="form" :model="form" label-width="120px" >
                 <el-form-item label="Título">
                     <el-input v-model="form.title"></el-input>
                 </el-form-item>
@@ -52,12 +52,21 @@ export default {
           text: '',
           idUser: '',
           //fechaHora: timestamp,
-        }
+        },
       }
     },
     methods: {
       cargarHistoria() {
-        try {
+        if(this.form.title == ""|| this.form.text == ""){
+          this.$notify({
+              title: "Todos los campos son requeridos!",
+              message: "Favor completar los campos vacios",
+              type: "warning",
+            });
+            return false;
+
+        }else{
+          try {
           setTimeout(() => {
             this.form.idUser = this.$store.state.userSession;
             this.$store.dispatch("cargandoHistorias", this.form);
@@ -72,8 +81,8 @@ export default {
         } catch (error) {
           alert("Error", error)
         }
-
-        console.log('submit!');
+           console.log('submit!');
+        }
       },
       volver() {
           this.$router.push('/usuario')

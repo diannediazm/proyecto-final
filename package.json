@@ -81,6 +81,10 @@
   "jest": {
     "preset": "@vue/cli-plugin-unit-jest",
     "verbose": true,
-    "moduleDirectories": ["node_modules", "src", "vue"]
+    "moduleDirectories": [
+      "node_modules",
+      "src",
+      "vue"
+    ]
   }
 }

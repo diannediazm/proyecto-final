@@ -16,7 +16,7 @@
                               Elige un nombre que identifique a las fotografías:
                               un día especial, una persona o tu mascota.
                          </p>
-                         <el-form ref="formFotos" :model="form" label-width="120px" :rules="formRules">
+                         <el-form ref="formFotos" :model="form" label-width="120px">
                               <el-form-item label="Nombre">
                                    <el-input v-model="form.name"></el-input>
                               </el-form-item>
@@ -76,7 +76,7 @@
                                         :on-preview="handlePreview"
                                         :on-remove="handleRemove"
                                         :file-list="fileList"
-                                        multiple
+                                        accept="image/jpeg,image/gif,image/png"
                                    >
                                         <i class="el-icon-upload"></i>
                                         <div class="el-upload__text">
@@ -131,45 +131,45 @@ export default {
                     userID: "",
                     pais: "",
                },
-               formRules: {
-                    name: [
-                         {
-                              required: true,
-                              message: "Ingresa un nombre para tu fotografía",
-                              trigger: "blur",
-                         },
-                    ],
-                    date1: [
-                         {
-                              type: "date",
-                              required: true,
-                              message: "Elige una fecha",
-                              trigger: "change",
-                         },
-                    ],
-                    desc: [
-                         {
-                              required: true,
-                              message: "Por favor, escribe sobre la fotografía",
-                              trigger: "blur",
-                         },
-                    ],
-               },
+               // formRules: {
+               //      name: [
+               //           {
+               //                required: true,
+               //                message: "Ingresa un nombre para tu fotografía",
+               //                trigger: "blur",
+               //           },
+               //      ],
+               //      date1: [
+               //           {
+               //                type: "date",
+               //                required: true,
+               //                message: "Elige una fecha",
+               //                trigger: "change",
+               //           },
+               //      ],
+               //      desc: [
+               //           {
+               //                required: true,
+               //                message: "Por favor, escribe sobre la fotografía",
+               //                trigger: "blur",
+               //           },
+               //      ],
+               // },
                fileList: [],
                archivo: {},
           };
      },
      methods: {
-          submitForm(form) {
-               this.$refs[form].validate((valid) => {
-               if (valid) {
-                    alert('submit!');
-               } else {
-                    console.log('error submit!!');
-                    return false;
-               }
-               });
-          },
+          // submitForm(form) {
+          //      this.$refs[form].validate((valid) => {
+          //      if (valid) {
+          //           alert('submit!');
+          //      } else {
+          //           console.log('error submit!!');
+          //           return false;
+          //      }
+          //      });
+          // },
           handleRemove(file, fileList) {
                console.log(file, fileList);
           },
@@ -187,11 +187,20 @@ export default {
           upload(file) {
                console.log(file);
                this.archivo = file.file;
+               this.form.photoURL = this.archivo.name;
           },
           onSubmit(event) {
                console.log(event);
                console.log(this.archivo);
-               if (this.archivo) {
+               if (this.form.name == "" || this.form.date1 == "" || this.form.desc == "" || this.form.pais == "" || this.form.photoURL == "") {
+                    this.$notify({
+                         title: "Todos los campos son requeridos!",
+                         message: "Favor completar los campos vacios",
+                         type: "warning",
+                         });
+                    return false;
+               }
+               else{
                     let userid = this.$store.state.userSession;
                     console.log(userid);
                     let storageRef = firebase

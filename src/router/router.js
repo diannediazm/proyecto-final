@@ -24,7 +24,11 @@ const routes = [
           name: "Registro",
           component: Registro,
      },
-     { path: '*', component: NotFound },
+     { 
+          path: '*', 
+          name:"Not Found",
+          component: NotFound 
+     },
      {
           path: "/fotos",
           name: "Fotos",
@@ -55,15 +59,10 @@ const routes = [
           name: "EditRegistro",
           component: EditRegistro,
      },
-     {
-          path: '*',
-          redirect: '/login'
-        }
 ];
 
 const router = new VueRouter({
      mode: "history",
-     base: process.env.BASE_URL,
      routes,
 });
 

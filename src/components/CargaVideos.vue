@@ -100,7 +100,7 @@
                   <em>haz clic para cargar</em>
                 </div>
                 <div slot="tip" class="el-upload__tip text-white">
-                  Solo archivos jpg/png con un tamaño menor de 500kb
+                  Solo archivos jpg/png con un tamaño menor de 1GB
                 </div>
               </el-upload>
             </el-form-item>

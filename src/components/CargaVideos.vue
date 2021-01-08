@@ -59,7 +59,7 @@
           </el-form>
         </b-col>
         <b-col class="carga my-5 text-center">
-          <b-form-group label="Individual radios" v-slot="{ ariaDescribedby }">
+          <b-form-group label="Elige tu opción de video" v-slot="{ ariaDescribedby }">
             <b-form-radio
               @change="clickLink"
               :model="selected"
@@ -67,7 +67,7 @@
               :checked="'A'"
               name="some-radios"
               value="A"
-              >Option A</b-form-radio
+              >Link de YouTube</b-form-radio
             >
             <b-form-radio
               @change="clickVideo"
@@ -75,7 +75,7 @@
               :aria-describedby="ariaDescribedby"
               name="some-radios"
               value="B"
-              >Option B</b-form-radio
+              >Carga tu propio Video</b-form-radio
             >
           </b-form-group>
           <el-form ref="form" :model="form">
@@ -92,6 +92,7 @@
                 :on-preview="handlePreview"
                 :on-remove="handleRemove"
                 :file-list="fileList"
+                accept="video/mp4"
               >
                 <i class="el-icon-upload"></i>
                 <div class="el-upload__text">
@@ -170,10 +171,18 @@ export default {
     },
     upload(file) {
       this.archivo = file.file;
+      this.videoURL = this.archivo.name;
     },
     onSubmit(event) {
       console.log(event);
-      if (this.selected == 'B') {
+      if(this.form.name == "" || this.form.date1 == "" || this.form.desc == "" || this.form.pais == "" || this.form.videoURL == ""){
+        this.$notify({
+                         title: "Todos los campos son requeridos!",
+                         message: "Favor completar los campos vacios",
+                         type: "warning",
+                         });
+                    return false;
+      }else if (this.selected == 'B') {
         let userid = this.$store.state.userSession;
         let storageRef = firebase
           .storage()

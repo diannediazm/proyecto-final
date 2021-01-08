@@ -76,6 +76,7 @@
                                         :on-preview="handlePreview"
                                         :on-remove="handleRemove"
                                         :file-list="fileList"
+                                        accept="image/jpeg,image/gif,image/png"
                                    >
                                         <i class="el-icon-upload"></i>
                                         <div class="el-upload__text">
@@ -186,11 +187,20 @@ export default {
           upload(file) {
                console.log(file);
                this.archivo = file.file;
+               this.form.photoURL = this.archivo.name;
           },
           onSubmit(event) {
                console.log(event);
                console.log(this.archivo);
-               if (this.archivo) {
+               if (this.form.name == "" || this.form.date1 == "" || this.form.desc == "" || this.form.pais == "" || this.form.photoURL == "") {
+                    this.$notify({
+                         title: "Todos los campos son requeridos!",
+                         message: "Favor completar los campos vacios",
+                         type: "warning",
+                         });
+                    return false;
+               }
+               else{
                     let userid = this.$store.state.userSession;
                     console.log(userid);
                     let storageRef = firebase

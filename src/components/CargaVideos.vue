@@ -59,11 +59,7 @@
           </el-form>
         </b-col>
         <b-col class="carga my-5 text-center">
-<<<<<<< HEAD
-          <b-form-group label="Opciones de carga" v-slot="{ ariaDescribedby }">
-=======
           <b-form-group label="Elige tu opción de video" v-slot="{ ariaDescribedby }">
->>>>>>> 06700317a8f61523b18c2b4f31000b88471c95f8
             <b-form-radio
               @change="clickLink"
               :model="selected"
@@ -71,11 +67,7 @@
               :checked="'A'"
               name="some-radios"
               value="A"
-<<<<<<< HEAD
-              >Desde Youtube</b-form-radio
-=======
               >Link de YouTube</b-form-radio
->>>>>>> 06700317a8f61523b18c2b4f31000b88471c95f8
             >
             <b-form-radio
               @change="clickVideo"
@@ -83,11 +75,7 @@
               :aria-describedby="ariaDescribedby"
               name="some-radios"
               value="B"
-<<<<<<< HEAD
-              >Desde tu dispositivo</b-form-radio
-=======
               >Carga tu propio Video</b-form-radio
->>>>>>> 06700317a8f61523b18c2b4f31000b88471c95f8
             >
           </b-form-group>
           <el-form ref="form" :model="form">

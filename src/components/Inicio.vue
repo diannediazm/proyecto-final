@@ -60,7 +60,6 @@
         <b-card-text class="my-3">
           A diario nuestros dispositivos se llenan de fotos. Elige cuáles son las que quieres recordar, agrúpalas por evento o persona especial.
         </b-card-text>
-        <b-button pill href="/fotos" variant="info">Sube tus fotos</b-button>
       </b-card>
 
       <b-card title="Videos">
@@ -68,7 +67,6 @@
         <b-card-text class="my-3">
           Respalda los videos más importantes, esos que buscas para ver nuevamente.
         </b-card-text>
-        <b-button pill href="/videos" variant="info" class="mt-5">Sube tus videos</b-button>
       </b-card>
 
       <b-card title="Historias">
@@ -76,7 +74,6 @@
         <b-card-text class="my-3">
           ¿Recuerdas tu primer beso? La memoria es frágil. Escribe acá eso que no le cuentas a nadie.
         </b-card-text>
-        <b-button pill href="/historias" variant="info" class="mt-4">Sube tus historias</b-button>
       </b-card>
     </b-card-group>
     <b-container class="casos my-5 text-center">

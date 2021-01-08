@@ -13,6 +13,7 @@
                   <template #modal-title> {{ listFotos[index].name }} </template>
                   <div class="d-block text-center">
                     {{ listFotos[index].desc }}
+                    <b-button pill variant="outline-secondary">Secondary</b-button>
                     <img :src="listFotos[index].photoURL" fluid img-alt="Image" img-top width="100%" class="my-2">
                   </div>
                   <b-button pill class="mt-3" block @click="$bvModal.hide('id'+index)"

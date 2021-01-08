@@ -1,7 +1,7 @@
 <template>
      <div class="background-fotos">
           <b-container class="pb-5">
-               <div class="title-fotos text-center mb-5 text-white">
+               <div class="title-fotos text-center text-white">
                     <h1>¡Sube tus fotografías!</h1>
                     <p class="bajada-title">
                          No dejes que tus fotos más importantes se pierdan en

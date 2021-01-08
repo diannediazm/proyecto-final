@@ -8,6 +8,7 @@ import Videos from "../views/Videos.vue";
 import Historias from "../views/Historias.vue";
 import Usuario from "../views/Usuario.vue";
 import EditRegistro from "../views/EditRegistro.vue";
+import NotFound from "../views/404.vue";
 import firebase from "firebase";
 
 Vue.use(VueRouter);
@@ -23,6 +24,7 @@ const routes = [
           name: "Registro",
           component: Registro,
      },
+     { path: '*', component: NotFound },
      {
           path: "/fotos",
           name: "Fotos",
@@ -53,6 +55,10 @@ const routes = [
           name: "EditRegistro",
           component: EditRegistro,
      },
+     {
+          path: '*',
+          redirect: '/login'
+        }
 ];
 
 const router = new VueRouter({

@@ -13,14 +13,14 @@
                   <template #modal-title> {{ listFotos[index].name }} </template>
                   <div class="d-block text-center">
                     <img :src="listFotos[index].photoURL" fluid img-alt="Image" img-top width="100%" class="my-2">
-                    {{ listFotos[index].desc }}
+                    <h6 class="text-profile">{{ listFotos[index].desc }}</h6>
                   </div>
                   <b-button pill class="mt-3" block @click="$bvModal.hide('id'+index)"
                     >Cerrar</b-button
                   >
                 </b-modal>
                <b-card-text>
-               {{ listFotos[index].desc }}
+               <h6 class="text-profile">{{ listFotos[index].desc }}</h6>
                </b-card-text>
                <b-button pill variant="outline-secondary" @click="$bvModal.show('id'+index)">Ver más</b-button>
                <template #footer>
@@ -52,7 +52,6 @@
                <b-modal v-bind:id="'idVideo'+index" hide-footer>
                   <template #modal-title> {{ listVideos[index].name }} </template>
                   <div class="d-block text-center">
-                    {{ listVideos[index].desc }}
                   <b-embed
                     type="iframe"
                     aspect="4by3"
@@ -60,12 +59,13 @@
                     allowfullscreen
                   ></b-embed>
                   </div>
+                  <h6 class="text-profile">{{ listVideos[index].desc }}</h6>
                   <b-button pill class="mt-3" block @click="$bvModal.hide('idVideo'+index)"
                     >Cerrar</b-button
                   >
                 </b-modal>
                <b-card-text>
-               {{ listVideos[index].desc }}
+                 <h6 class="text-profile">{{ listVideos[index].desc }}</h6>
                </b-card-text>
                <b-button pill variant="outline-secondary" @click="$bvModal.show('idVideo'+index)">Ver más</b-button>
                <template #footer>

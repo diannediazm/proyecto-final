@@ -94,6 +94,27 @@
   border-radius: 50px;
 }
 
+.custom-control-input:checked~.custom-control-label::before {
+  color: #fff !important;
+  border-color: #c1c1c1 !important;
+  background-color: #f56c6c !important;
+}
+.col-form-label {
+  padding-top: calc(.375rem + 1px);
+  padding-bottom: calc(.375rem + 1px);
+  margin-bottom: 0;
+  font-size: inherit;
+  line-height: 1.5;
+  font-weight: 600 !important;
+}
+
+.text-profile {
+  font-size: 15px;
+  padding-top: 10px;
+  font-weight: 400;
+  text-align: left;
+}
+
 @media (max-width: 575.98px) {
   .bv-example-row {
     margin-top: 115px;

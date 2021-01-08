@@ -59,7 +59,7 @@
           </el-form>
         </b-col>
         <b-col class="carga my-5 text-center">
-          <b-form-group label="Individual radios" v-slot="{ ariaDescribedby }">
+          <b-form-group label="Opciones de carga" v-slot="{ ariaDescribedby }">
             <b-form-radio
               @change="clickLink"
               :model="selected"
@@ -67,7 +67,7 @@
               :checked="selected ='A'"
               name="some-radios"
               value="A"
-              >Option A</b-form-radio
+              >Desde Youtube</b-form-radio
             >
             <b-form-radio
               @change="clickVideo"
@@ -75,7 +75,7 @@
               :aria-describedby="ariaDescribedby"
               name="some-radios"
               value="B"
-              >Option B</b-form-radio
+              >Desde tu dispositivo</b-form-radio
             >
           </b-form-group>
           <el-form ref="form" :model="form">
@@ -178,7 +178,8 @@ export default {
     onSubmit(event) {
       console.log(event);
       console.log(this.archivo);
-      if (this.selected === 'B') {
+      console.log(this.selected);
+      if (this.selected == 'B') {
         let userid = this.$store.state.userSession;
         let storageRef = firebase
           .storage()

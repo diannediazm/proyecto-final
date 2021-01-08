@@ -24,13 +24,13 @@
                </b-card-text>
                <b-button pill variant="outline-secondary" @click="$bvModal.show('id'+index)">Ver más</b-button>
                <template #footer>
-               <small class="text-muted">
+               <small class="text-muted"> Recuerdo del 
                     {{
                 Intl.DateTimeFormat("es-CL").format(
                   listFotos[index].date1.toDate()
                 )
-              }},
-              {{listFotos[index].pais}}
+              }}
+              en {{listFotos[index].pais}}
                </small>
                </template>
           </b-card> 
@@ -69,13 +69,13 @@
                </b-card-text>
                <b-button pill variant="outline-secondary" @click="$bvModal.show('idVideo'+index)">Ver más</b-button>
                <template #footer>
-               <small class="text-muted">
+               <small class="text-muted">Recuerdo del 
                     {{
                 Intl.DateTimeFormat("es-CL").format(
                   listVideos[index].date1.toDate()
                 )
-              }},
-              {{listVideos[index].pais}}
+              }}
+              en {{listVideos[index].pais}}
                </small>
                </template>
           </b-card>        
@@ -84,30 +84,22 @@
         <b-col xl="4" lg="4" md="4" xs="12" class="my-3">
           <h4 class="text-white mb-3">Últimas historias</h4>
           <vuescroll :ops="ops">
-         <b-card v-for="(data, index) in listHistorias" :key="index" class="mb-3" header-tag="header" footer-tag="footer">
-               <b-modal v-bind:id="'idHistoria'+index" hide-footer>
+            <b-card v-for="(data, index) in listHistorias" :key="index" class="mb-3"> 
+               <h4>{{ listHistorias[index].title }} </h4>
+                <h6 class="text-profile">{{ listHistorias[index].text }}</h6>    
+               <b-modal v-bind:id="'idHistorias'+index" hide-footer>
                   <template #modal-title> {{ listHistorias[index].title }} </template>
                   <div class="d-block text-center">
-                    {{ listHistorias[index].text}}
+                    <h6 class="text-profile">{{ listHistorias[index].text }}</h6>
                   </div>
-                  <b-button pill class="mt-3" block @click="$bvModal.hide('idHistoria'+index)"
+                  <b-button pill class="mt-3" block @click="$bvModal.hide('idHistorias'+index)"
                     >Cerrar</b-button
                   >
                 </b-modal>
-               <template #header>
-               <h6 class="mb-0">{{ listHistorias[index].title }}</h6>
-               </template>
                <b-card-text>
-                    {{ listHistorias[index].text}}
+               
                </b-card-text>
-               <b-button pill variant="outline-secondary" @click="$bvModal.show('idHistoria'+index)">Ver más</b-button>
-               <template #footer>
-               <em>{{
-                Intl.DateTimeFormat("es-CL").format(
-                  listHistorias[index].fechaHora.toDate()
-                )
-              }}</em>
-               </template>
+               <b-button pill variant="outline-secondary" @click="$bvModal.show('idHistorias'+index)">Ver más</b-button>
           </b-card>
           </vuescroll>
         </b-col>
